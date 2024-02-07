@@ -1,5 +1,6 @@
 from flask import Flask
 from dotenv import load_dotenv
+from flask_mysqldb import MySQL
 import os
 
 """ 
@@ -12,6 +13,9 @@ configurations. This is particularly useful for:
 - Facilitating unit testing by easily allowing the creation of a fresh app instance for each test.
 """
 
+# Initalize MySQL
+mysql = MySQL()
+
 
 def create_app(test_config=None):
     # Create and configure the app
@@ -23,7 +27,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # Get the secret key from the configuration file
+    # Get the secret key from the configuration fileOk
     app.secret_key = app.config["SECRET_KEY"]
 
     # Load environment variables from .env file
@@ -38,6 +42,9 @@ def create_app(test_config=None):
         app.config.from_object("instance.config.ProductionConfig")
     else:
         print("FLASK_ENV environment variable is not set!")
+
+    # Initialize MySQL with the app
+    mysql.init_app(app)
 
     # Register blueprints within app context
     from app.main.routes import main_bp
