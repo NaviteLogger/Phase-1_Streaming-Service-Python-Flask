@@ -1,3 +1,4 @@
+import dotenv
 from flask import Flask
 from dotenv import load_dotenv
 from flask_mysqldb import MySQL
@@ -14,7 +15,7 @@ configurations. This is particularly useful for:
 """
 
 # Initalize MySQL
-mysql = MySQL()
+# mysql = MySQL()
 
 
 def create_app(test_config=None):
@@ -31,7 +32,9 @@ def create_app(test_config=None):
     app.secret_key = app.config["SECRET_KEY"]
 
     # Load environment variables from .env file
-    load_dotenv()
+    dotenv.load_dotenv()
+
+    print(os.environ.get("FLASK_ENV"))
 
     # Load the appropriate config file
     if os.environ.get("FLASK_ENV") == "development":
@@ -44,7 +47,7 @@ def create_app(test_config=None):
         print("FLASK_ENV environment variable is not set!")
 
     # Initialize MySQL with the app
-    mysql.init_app(app)
+    # mysql.init_app(app)
 
     # Register blueprints within app context
     from app.main.routes import main_bp

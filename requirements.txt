@@ -7,6 +7,7 @@ click==8.1.7
 colorama==0.4.6
 docutils==0.20.1
 Flask==3.0.0
+Flask-DotEnv==0.1.2
 Flask-MySQLdb==2.0.0
 idna==3.6
 imagesize==1.4.1
