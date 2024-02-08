@@ -1,11 +1,10 @@
 // BannerSection.js
 import React from 'react';
-import projectStyles from './style.module.css';
-import styles from './home.module.css';
+import styles from './BannerSection.module.css'; // Updated import to use BannerSection's specific CSS module
 
 const BannerSection = () => {
     return (
-        <div className={`${projectStyles['banner-container']} ${styles['banner1']}`}>
+        <div className={styles['banner-container']}>
             {/* Banner section content */}
         </div>
     );
