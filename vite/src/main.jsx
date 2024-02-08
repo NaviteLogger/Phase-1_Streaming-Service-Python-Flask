@@ -1,10 +1,23 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import NavBar from './NavBar.module';
+import HeroSection from './HeroSection.module';
+import FeaturesSection from './FeaturesSection';
+import BannerSection from './BannerSection.module';
+import FAQSection from './FAQSection.module';
+import Footer from './Footer.module';
+import styles from './home.module.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+const Home = () => {
+  return (
+    <div className={styles['container']}>
+      <NavBar />
+      <HeroSection />
+      <FeaturesSection />
+      <BannerSection />
+      <FAQSection />
+      <Footer />
+    </div>
+  );
+};
+
+export default Home;
