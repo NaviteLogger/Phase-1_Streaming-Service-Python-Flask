@@ -1,11 +1,11 @@
 import React from 'react';
-import NavBar from './NavBar';
-import HeroSection from './HeroSection';
-import FeaturesSection from './FeaturesSection';
-import BannerSection from './BannerSection';
-import FAQSection from './FAQSection';
-import Footer from './Footer';
-import styles from './App.module.css';
+import NavBar from './NavBar.module';
+import HeroSection from './HeroSection.module';
+import FeaturesSection from './FeaturesSection.module';
+import BannerSection from './BannerSection.module';
+import FAQSection from './FAQSection.module';
+import Footer from './Footer.module';
+import styles from './App.css';
 
 function App() {
   return (

@@ -4,8 +4,8 @@ import styles from './NavBar.module.css';
 
 const NavBar = () => {
     return (
-        <header data-thq="thq-navbar" className={`${projectStyles['navbar-container']} ${styles['navbar-interactive']}`}>
-            <span className={projectStyles['logo']}>STREAMIFY</span>
+        <header data-thq="thq-navbar" className={`${styles['navbar-container']}`}>
+            <span className={styles['logo']}>STREAMIFY</span>
             {/* Rest of the navbar code */}
         </header>
     );
