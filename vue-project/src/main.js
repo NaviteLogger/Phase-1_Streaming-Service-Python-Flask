@@ -1,6 +1,13 @@
-import './assets/main.css'
 
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
+import router from './router'
+import LottieVuePlayer from '@lottiefiles/vue-lottie-player'
 
-createApp(App).mount('#app')
+Vue.use(LottieVuePlayer)
+Vue.config.productionTip = false
+
+new Vue({
+  render: h => h(App),
+  router
+}).$mount('#app')
