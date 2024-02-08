@@ -1,0 +1,92 @@
+/* Define color variables */
+:root {
+    --dl-color-primary: #007bff;
+    --dl-color-secondary: #6c757d;
+    --dl-color-success: #28a745;
+    --dl-color-info: #17a2b8;
+    --dl-color-warning: #ffc107;
+    --dl-color-danger: #dc3545;
+    --dl-color-light: #f8f9fa;
+    --dl-color-dark: #343a40;
+    --dl-color-gray-white: #ffffff;
+    --dl-color-gray-900: #212529;
+
+    /* Spacing units */
+    --dl-space-space-unit: 8px;
+    --dl-space-space-twounits: 16px;
+    --dl-space-space-threeunits: 24px;
+    --dl-space-space-fourunits: 32px;
+    --dl-space-space-oneandhalfunits: 12px;
+
+    /* Size variables */
+    --dl-size-size-xsmall: 24px;
+    --dl-size-size-maxwidth: 1200px;
+}
+
+/* Typography */
+.heading1 {
+    font-size: 2.25rem;
+    /* 36px */
+    font-weight: bold;
+}
+
+.heading2 {
+    font-size: 1.75rem;
+    /* 28px */
+    font-weight: bold;
+}
+
+.heading3 {
+    font-size: 1.5rem;
+    /* 24px */
+    font-weight: bold;
+}
+
+.body-large {
+    font-size: 1.125rem;
+    /* 18px */
+}
+
+.body-small {
+    font-size: 0.875rem;
+    /* 14px */
+}
+
+/* Utility classes for common use */
+.features-card {
+    background-color: var(--dl-color-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: var(--dl-space-space-twounits);
+}
+
+.features-icon {
+    fill: var(--dl-color-primary);
+    width: var(--dl-size-size-xsmall);
+    height: var(--dl-size-size-xsmall);
+}
+
+.social-icons {
+    fill: var(--dl-color-dark);
+    width: var(--dl-size-size-xsmall);
+    height: var(--dl-size-size-xsmall);
+    cursor: pointer;
+}
+
+.button-flat {
+    background-color: transparent;
+    border: 2px solid var(--dl-color-primary);
+    color: var(--dl-color-primary);
+    padding: var(--dl-space-space-unit) var(--dl-space-space-twounits);
+    border-radius: var(--dl-space-space-unit);
+    cursor: pointer;
+}
+
+.button-filled {
+    background-color: var(--dl-color-primary);
+    border: none;
+    color: var(--dl-color-gray-white);
+    padding: var(--dl-space-space-unit) var(--dl-space-space-twounits);
+    border-radius: var(--dl-space-space-unit);
+    cursor: pointer;
+}
