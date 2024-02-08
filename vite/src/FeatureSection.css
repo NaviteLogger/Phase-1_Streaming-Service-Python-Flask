@@ -1,0 +1,27 @@
+/* FeaturesSection.module.css */
+.features {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.features-heading {
+    margin-bottom: var(--dl-space-space-oneandhalfunits);
+}
+
+.features-sub-heading {
+    font-size: 18px;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    display: grid;
+    grid-gap: var(--dl-space-space-oneandhalfunits);
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Additional FeaturesSection styles */
