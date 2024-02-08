@@ -19,7 +19,7 @@ mysql = MySQL()
 
 def create_app(test_config=None):
     # Create and configure the app
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder="./app/static")
 
     # Ensure the instance folder exists
     try:
