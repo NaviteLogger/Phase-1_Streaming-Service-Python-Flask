@@ -9,7 +9,7 @@ const Home = (props) => {
     <>
       <div className="home-container">
         <Head>
-          <title>Spotless Hungry Crocodile</title>
+          <title>Streamify</title>
         </Head>
         <div className="home-header">
           <header
@@ -398,7 +398,7 @@ const Home = (props) => {
             <div className="home-separator"></div>
             <div className="home-container7">
               <span className="bodySmall home-text52">
-                © 2023 myCompany, All Rights Reserved.
+                © 2024 Marek Kacprzak, All Rights Reserved.
               </span>
               <div className="home-icon-group1">
                 <svg
