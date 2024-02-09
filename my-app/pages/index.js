@@ -22,7 +22,6 @@ const Home = (props) => {
               <nav className="home-links">
                 <span className="bodySmall">Home</span>
                 <span className="home-nav22 bodySmall">Features</span>
-                <span className="home-nav32 bodySmall">Pricing</span>
                 <span className="home-nav42 bodySmall">About</span>
                 <span className="home-nav52 bodySmall">Contact</span>
               </nav>
@@ -275,7 +274,7 @@ const Home = (props) => {
                   <span>
                     Discover a world of entertainment with our simple streaming
                     platform. Whether you&apos;re into movies, TV shows, or
-                    documentaries, we&apos;ve got you covered. With our
+                    documentaries, I&apos;ve got you covered. With our
                     user-friendly interface and vast library of content, you can
                     easily find and stream your favorite shows and movies with
                     just a few clicks.
@@ -354,7 +353,7 @@ const Home = (props) => {
                 <h2 className="home-text48 heading2">Common questions</h2>
                 <span className="home-text49 bodyLarge">
                   <span>
-                    Here are some of the most common questions that we get.
+                    Here are some of the most common questions that I get.
                   </span>
                   <br></br>
                 </span>
@@ -365,7 +364,7 @@ const Home = (props) => {
                   question="What is the streaming platform?"
                 ></Question1>
                 <Question1
-                  answer="You can access the streaming platform by visiting our website and creating an account. Once you have an account, you can log in and start streaming immediately."
+                  answer="You can access the streaming platform by visiting this website and creating an account. Once you have an account, you can log in and start streaming immediately."
                   question="How can I access the streaming platform?"
                 ></Question1>
                 <Question1
@@ -373,11 +372,11 @@ const Home = (props) => {
                   question="What devices are supported by the streaming platform?"
                 ></Question1>
                 <Question1
-                  answer="Yes, there is a subscription fee to access the streaming platform. We offer different subscription plans to suit your needs and budget. You can find more information about our pricing on our website."
+                  answer="Absolutely not! The streaming platform is completely free to use. You create an account just to select movies you like for later."
                   question="Is there a cost to use the streaming platform?"
                 ></Question1>
                 <Question1
-                  answer="Yes, you can download select movies and TV shows to watch offline on supported devices. This feature is available for certain content and is subject to licensing agreements."
+                  answer="Yes, you can download select movies and TV shows to watch offline on supported devices. This feature is available for certain content."
                   question="Can I download content to watch offline?"
                 ></Question1>
               </div>
@@ -391,7 +390,6 @@ const Home = (props) => {
               <nav className="home-nav1">
                 <span className="bodySmall">Home</span>
                 <span className="home-nav222 bodySmall">Features</span>
-                <span className="home-nav322 bodySmall">Pricing</span>
                 <span className="home-nav422 bodySmall">About</span>
                 <span className="home-nav522 bodySmall">Contact</span>
               </nav>

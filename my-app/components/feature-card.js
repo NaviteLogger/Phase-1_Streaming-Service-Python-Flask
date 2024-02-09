@@ -22,6 +22,7 @@ const FeatureCard = (props) => {
             align-items: flex-start;
             flex-direction: column;
             justify-content: flex-start;
+            min-width: 100%;
           }
           .feature-card-text {
             font-weight: 600;
