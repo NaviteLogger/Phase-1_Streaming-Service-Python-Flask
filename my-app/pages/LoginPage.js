@@ -1,39 +1,46 @@
+// LoginPage.js
 import React, { useState } from 'react';
-import './LoginPage.css'; // Assuming you will name the CSS file as LoginPage.css
+import './LoginPage.css'; // Make sure to create a LoginPage.css file in your project
 
 function LoginPage() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [credentials, setCredentials] = useState({ username: '', password: '' });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Implement your login logic here
-        console.log(username, password);
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setCredentials({ ...credentials, [name]: value });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Here you can handle the login logic
+        console.log('Login credentials:', credentials);
     };
 
     return (
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit}>
-                <h2>Login</h2>
+                <h2 className="login-title">Login</h2>
                 <div className="input-group">
-                    <label htmlFor="username">Username</label>
                     <input
-                        id="username"
+                        name="username"
                         type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Username"
+                        value={credentials.username}
+                        onChange={handleChange}
+                        required
                     />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="password">Password</label>
                     <input
-                        id="password"
+                        name="password"
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        value={credentials.password}
+                        onChange={handleChange}
+                        required
                     />
                 </div>
-                <button type="submit">Login</button>
+                <button className="login-button" type="submit">Login</button>
             </form>
         </div>
     );
