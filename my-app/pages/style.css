@@ -369,3 +369,43 @@
   text-transform: none;
   text-decoration: none;
 }
+
+/* login-page.js */
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: var(--dl-space-space-unit);
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: var(--dl-size-size-xsmall);
+}
+
+.login-form input {
+  width: 100%;
+  margin-bottom: var(--dl-space-space-unit);
+  padding: var(--dl-size-size-xsmall);
+  border: 1px solid var(--dl-color-gray-700);
+}
+
+.login-form button {
+  width: 100%;
+  padding: var(--dl-size-size-xsmall);
+  background-color: var(--dl-color-primary-100);
+  color: var(--dl-color-gray-white);
+  border: none;
+  cursor: pointer;
+}
+
+.login-form p {
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .login-container {
+    padding: var(--dl-space-space-unit) var(--dl-size-size-xsmall);
+  }
+}
