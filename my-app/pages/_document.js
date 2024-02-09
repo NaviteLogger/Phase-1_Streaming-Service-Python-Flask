@@ -1,3 +1,6 @@
+// Used to fill your application's <html> and <body> tags. 
+// This is where you can add things like external font CSS links 
+// or any other assets that need to persist across all pages.
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 class CustomDocument extends Document {
   render() {

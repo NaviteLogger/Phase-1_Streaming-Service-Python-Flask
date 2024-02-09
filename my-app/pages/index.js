@@ -1,3 +1,4 @@
+// Represents the home (root) page of the application
 import React from 'react'
 import Head from 'next/head'
 
