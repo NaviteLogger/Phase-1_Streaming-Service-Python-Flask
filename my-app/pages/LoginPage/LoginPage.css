@@ -1,0 +1,63 @@
+/* LoginPage.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #121212;
+    /* Dark background */
+    color: #fff;
+    /* Light text */
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: #232323;
+    /* Slightly lighter than the background for contrast */
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    background-color: #333;
+    /* Even lighter for the input background */
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.login-button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #0066cc;
+    /* A stand-out color for call to action */
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+    /* Darken the button when hovered */
+}
+
+/* You might want to add additional styles for input:focus, etc. */
