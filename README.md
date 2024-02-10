@@ -54,3 +54,23 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+3. Install the frontend dependencies (Next.js development server)
+
+```bash
+cd my-app
+npm install
+```
+
+4. Run the backend server
+
+```bash
+python app.py
+```
+
+5. Run the frontend development server
+
+```bash
+cd my-app
+npm run dev
+```
+
