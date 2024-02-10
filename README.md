@@ -81,3 +81,19 @@ npm run dev
 ```bash
 http://localhost:3000
 ```
+
+## Documentation
+
+The documentation for this project can be found in the [docs](docs) directory.
+
+## Contributing
+
+Contributions are welcome! Please see the [contributing guidelines](CONTRIBUTING.md) for more information.
+
+## Authors
+
+- [NaviteLogger](https://www.linkedin.com/in/marek-kacprzak-238053218/)
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
