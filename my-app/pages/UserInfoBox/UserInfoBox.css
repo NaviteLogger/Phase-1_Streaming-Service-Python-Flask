@@ -1,0 +1,22 @@
+/* UserInfoBox.css */
+.user-info-box {
+    background-color: #232323;
+    /* Dark grey, consistent with the website's theme */
+    color: #fff;
+    padding: 1rem;
+    margin: 1rem 2rem;
+    /* Adjust as needed based on your layout */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Optional: adds depth to the box */
+}
+
+.user-info-box h3 {
+    margin: 0;
+    color: #4CAF50;
+    /* Green color for a welcoming feel */
+}
+
+.user-info-box p {
+    margin: 0.5rem 0 0;
+}
