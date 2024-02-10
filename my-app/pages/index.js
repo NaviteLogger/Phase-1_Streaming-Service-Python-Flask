@@ -7,8 +7,6 @@ import HomeHero from './HomeHero.js';
 import HomeFeatures from './HomeFeatures.js';
 import HomeBanner from './HomeBanner.js';
 
-import Question1 from '../components/question1'
-
 const Home = (props) => {
   return (
     <>
