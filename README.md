@@ -61,6 +61,8 @@ cd my-app
 npm install
 ```
 
+### Usage
+
 4. Run the backend server
 
 ```bash
@@ -72,5 +74,11 @@ python app.py
 ```bash
 cd my-app
 npm run dev
+```
+
+6. Open the application in your web browser
+
+```bash
+http://localhost:3000
 ```
 
