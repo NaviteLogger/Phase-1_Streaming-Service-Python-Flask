@@ -2,12 +2,31 @@
 
 ## Introduction
 
-This is a simple web streaming service platform written in Python's web framemork - Flask. The platform is designed to allow users to request, watch and bookmark movies and TV shows available on the platform's server. This project integrates a React frontend with a Flask backend to create a full-stack web application. The React app serves as the user interface, allowing users to interact with the application through a modern, responsive design. The Flask backend handles API requests, business logic, and interactions with the database, providing a robust server-side platform.
+This is a simple web streaming service platform written in Python's web framemork - Flask. The platform is designed to allow users to request, watch and bookmark movies and TV shows available on the platform's server. The project was created to serve as a local streaming service platform for a small community or organization. The platform is designed to be simple and easy to use, with a modern, responsive user interface.
+
+This project integrates a React frontend with a Flask backend to create a full-stack web application. The React app serves as the user interface, allowing users to interact with the application through a modern, responsive design. The Flask backend handles API requests, business logic, and interactions with the database, providing a robust server-side platform.
 
 ## Features
 
 - Modern React frontend
 - Flask backend with RESTful API
 - Responsive design suitable for all devices
-- (Add more features specific to your project)
+
+## Future Features
+
+- User authentication and authorization
+- User's ability to upload and manage their own movies
+- P2P streaming
+
+## Installation
+
+### Prerequisites
+
+- NVM (https://medium.com/@imvinojanv/how-to-install-node-js-and-npm-using-node-version-manager-nvm-143165b16ce1)
+- Node.js and npm (https://nodejs.org/)
+- Python 3 (https://www.python.org/downloads/)
+- Flask (https://palletsprojects.com/p/flask/)
+- Dependencies (see requirements.txt)
+
+
 
