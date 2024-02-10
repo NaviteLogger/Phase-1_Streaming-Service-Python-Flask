@@ -28,11 +28,29 @@ This project integrates a React frontend with a Flask backend to create a full-s
 - Flask (https://palletsprojects.com/p/flask/)
 - Dependencies (see requirements.txt)
 
-### Setup
+### Setup Instructions (for Linux operating system)
 
 1. Clone the repository
 
 ```bash
 git clone https://github.com/NaviteLogger/Local-Web-Streaming-Service-Python-Flask.git
+```
+
+1.2. Create a virtual environment (optional)
+
+```bash
+python3 -m venv venv
+``` 
+
+1.3. Activate the virtual environment (optional)
+
+```bash
+source venv/bin/activate
+```
+
+2. Install the dependencies
+
+```bash
+pip install -r requirements.txt
 ```
 
