@@ -1,5 +1,6 @@
 // MovieBrowser.js
 import React, { useState } from 'react';
+import './MovieBrowser.css';
 
 function MovieBrowser() {
     const [searchTerm, setSearchTerm] = useState('');

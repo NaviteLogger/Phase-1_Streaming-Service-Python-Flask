@@ -1,5 +1,6 @@
 // BookmarkedMovies.js
 import React from 'react';
+import './BookmarkedMovies.css';
 
 function BookmarkedMovies() {
     // This data would typically come from a database or state management store

@@ -1,5 +1,6 @@
 // MovieRequest.js
 import React, { useState } from 'react';
+import './MovieRequest.css';
 
 function MovieRequest() {
     const [requestDetails, setRequestDetails] = useState({
