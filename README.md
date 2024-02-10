@@ -66,7 +66,7 @@ npm install
 4. Run the backend server
 
 ```bash
-python app.py
+flask run
 ```
 
 5. Run the frontend development server
@@ -81,4 +81,3 @@ npm run dev
 ```bash
 http://localhost:3000
 ```
-
