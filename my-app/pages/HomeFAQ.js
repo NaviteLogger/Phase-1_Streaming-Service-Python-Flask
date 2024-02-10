@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles.css";
+import "./style.css";
 import Question1 from "../components/question1";
 
 export default function HomeFAQ() {
