@@ -5,8 +5,8 @@ import Head from 'next/head'
 import HomeHeader from './HomeHeader.js';
 import HomeHero from './HomeHero.js';
 import HomeFeatures from './HomeFeatures.js';
+import HomeBanner from './HomeBanner.js';
 
-import FeatureCard from '../components/feature-card'
 import Question1 from '../components/question1'
 
 const Home = (props) => {
@@ -19,126 +19,7 @@ const Home = (props) => {
         <HomeHeader />
         <HomeHero />
         <HomeFeatures />
-        <div className="home-banner">
-          <div className="bannerContainer home-banner1">
-            <h1 className="home-banner-heading heading2">
-              Watch, Stream, Enjoy
-            </h1>
-            <span className="home-banner-sub-heading bodySmall">
-              <span>
-                <span>
-                  <span>
-                    Discover a world of entertainment with our simple streaming
-                    platform. Whether you&apos;re into movies, TV shows, or
-                    documentaries, I&apos;ve got you covered. With our
-                    user-friendly interface and vast library of content, you can
-                    easily find and stream your favorite shows and movies with
-                    just a few clicks.
-                  </span>
-                  <span>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: ' ',
-                      }}
-                    />
-                  </span>
-                </span>
-                <span>
-                  <span>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: ' ',
-                      }}
-                    />
-                  </span>
-                  <span>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: ' ',
-                      }}
-                    />
-                  </span>
-                </span>
-              </span>
-              <span>
-                <span>
-                  <span>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: ' ',
-                      }}
-                    />
-                  </span>
-                  <span>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: ' ',
-                      }}
-                    />
-                  </span>
-                </span>
-                <span>
-                  <span>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: ' ',
-                      }}
-                    />
-                  </span>
-                  <span>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: ' ',
-                      }}
-                    />
-                  </span>
-                </span>
-              </span>
-            </span>
-            <button className="buttonFilled">Learn More</button>
-          </div>
-        </div>
-        <div className="home-faq">
-          <div className="faqContainer">
-            <div className="home-faq1">
-              <div className="home-container4">
-                <span className="overline">
-                  <span>FAQ</span>
-                  <br></br>
-                </span>
-                <h2 className="home-text48 heading2">Common questions</h2>
-                <span className="home-text49 bodyLarge">
-                  <span>
-                    Here are some of the most common questions that I get.
-                  </span>
-                  <br></br>
-                </span>
-              </div>
-              <div className="home-container5">
-                <Question1
-                  answer="The streaming platform is a simple and user-friendly platform that allows you to stream your favorite movies, TV shows, and videos online."
-                  question="What is the streaming platform?"
-                ></Question1>
-                <Question1
-                  answer="You can access the streaming platform by visiting this website and creating an account. Once you have an account, you can log in and start streaming immediately."
-                  question="How can I access the streaming platform?"
-                ></Question1>
-                <Question1
-                  answer="The streaming platform is compatible with a wide range of devices, including smartphones, tablets, smart TVs, and computers. You can stream content on any device with an internet connection."
-                  question="What devices are supported by the streaming platform?"
-                ></Question1>
-                <Question1
-                  answer="Absolutely not! The streaming platform is completely free to use. You create an account just to select movies you like for later."
-                  question="Is there a cost to use the streaming platform?"
-                ></Question1>
-                <Question1
-                  answer="Yes, you can download select movies and TV shows to watch offline on supported devices. This feature is available for certain content."
-                  question="Can I download content to watch offline?"
-                ></Question1>
-              </div>
-            </div>
-          </div>
-        </div>
+        <HomeBanner />
         <div className="home-footer">
           <footer className="footerContainer home-footer1">
             <div className="home-container6">

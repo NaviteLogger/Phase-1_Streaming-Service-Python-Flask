@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import FeatureCard from '../components/feature-card'
 
 export default function HomeFeatures() {
     return (
