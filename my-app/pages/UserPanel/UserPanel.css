@@ -1,13 +1,11 @@
 /* UserPanel.css */
 .user-panel {
     background-color: #121212;
-    /* Dark background */
     color: #ffffff;
-    /* Light text */
     min-height: 100vh;
-    /* Full height */
     display: flex;
     flex-direction: column;
+    padding-top: 5%;
 }
 
 .user-panel main {
