@@ -3,6 +3,7 @@ import React from 'react'
 import Head from 'next/head'
 
 import HomeHeader from './HomeHeader.js';
+import HomeHero from './HomeHero.js';
 
 import FeatureCard from '../components/feature-card'
 import Question1 from '../components/question1'
@@ -15,83 +16,7 @@ const Home = (props) => {
           <title>Streamify</title>
         </Head>
         <HomeHeader />
-        <div className="home-hero">
-          <div className="heroContainer home-hero1">
-            <div className="home-container1">
-              <h1 className="home-hero-heading heading1">
-                Simple Streaming Platform
-              </h1>
-              <span className="home-hero-sub-heading bodyLarge">
-                <span>
-                  <span>
-                    <span>Stream your favorite content anytime, anywhere</span>
-                    <span>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </span>
-                  </span>
-                  <span>
-                    <span>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </span>
-                    <span>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </span>
-                  </span>
-                </span>
-                <span>
-                  <span>
-                    <span>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </span>
-                    <span>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </span>
-                  </span>
-                  <span>
-                    <span>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </span>
-                    <span>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </span>
-                  </span>
-                </span>
-              </span>
-              <div className="home-btn-group">
-                <button className="buttonFilled">Get Started</button>
-                <button className="buttonFlat">Learn More →</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <HomeHero />
         <div className="home-features">
           <div className="featuresContainer">
             <div className="home-features1">
