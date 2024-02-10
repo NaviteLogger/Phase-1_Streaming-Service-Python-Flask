@@ -1,0 +1,18 @@
+/* UserPanel.css */
+.user-panel {
+    background-color: #121212;
+    /* Dark background */
+    color: #ffffff;
+    /* Light text */
+    min-height: 100vh;
+    /* Full height */
+    display: flex;
+    flex-direction: column;
+}
+
+.user-panel main {
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+/* Assuming your Header and Footer components have their own styling from the index.js */
