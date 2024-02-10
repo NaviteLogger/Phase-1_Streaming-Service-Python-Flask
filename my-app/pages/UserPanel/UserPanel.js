@@ -9,11 +9,13 @@ import BookmarkedMovies from '../BookmarkedMovies/BookmarkedMovies.js'; // Compo
 function UserPanel() {
     return (
         <div className="user-panel">
+            {/* <Header /> */}
             <main>
                 <MovieBrowser />
                 <MovieRequest />
                 <BookmarkedMovies />
             </main>
+            {/* <Footer /> */}
         </div>
     );
 }
