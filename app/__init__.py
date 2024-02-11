@@ -4,16 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 
-""" 
-The "Application Factory" (in this case the 'create_app' function) is a 
-pattern in Flask where the application is created inside a function,
-allowing for different instances of the app to be created with different 
-configurations. This is particularly useful for:
-- Configuring applications differently for different environments (development, testing, production, etc.)
-- Ensuring that resources (like databases) are correctly set up every time an app instance is created.
-- Facilitating unit testing by easily allowing the creation of a fresh app instance for each test.
-"""
-
 
 def create_app(test_config=None):
     # Create and configure the app
