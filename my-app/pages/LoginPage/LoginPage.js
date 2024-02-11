@@ -1,11 +1,13 @@
 // LoginPage.js
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import './LoginPage.css';
 import HomeHeader from '../HomeHeader';
 import Footer from '../Footer';
 
 function LoginPage() {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const router = useRouter();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
