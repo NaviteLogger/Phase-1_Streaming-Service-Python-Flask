@@ -1,6 +1,6 @@
 from flask import Flask
 from dotenv import load_dotenv
-from flask_mysqldb import MySQL
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 """ 
@@ -12,9 +12,6 @@ configurations. This is particularly useful for:
 - Ensuring that resources (like databases) are correctly set up every time an app instance is created.
 - Facilitating unit testing by easily allowing the creation of a fresh app instance for each test.
 """
-
-# Initalize MySQL
-mysql = MySQL()
 
 
 def create_app(test_config=None):
@@ -45,8 +42,11 @@ def create_app(test_config=None):
     else:
         print("FLASK_ENV environment variable is not set!")
 
-    # Initialize MySQL with the app
-    mysql.init_app(app)
+    # Set up the SQLAlchemy database connection
+    db = SQLAlchemy(app)
+
+    # Import and register the database models
+    from app.users.models import User
 
     # Register blueprints within app context
     from app.main.routes import main_bp
