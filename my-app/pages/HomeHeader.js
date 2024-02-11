@@ -24,7 +24,9 @@ export default function HomeHeader() {
                         <Link href="/LoginPage/LoginPage">
                             <button className="home-login buttonFlat">Login</button>
                         </Link>
-                        <button className="buttonFilled">Register</button>
+                        <Link href="/RegistrationPage/RegistrationPage">
+                            <button className="buttonFilled">Register</button>
+                        </Link>
                     </div>
                 </div>
                 <div data-thq="thq-burger-menu" className="home-burger-menu">
