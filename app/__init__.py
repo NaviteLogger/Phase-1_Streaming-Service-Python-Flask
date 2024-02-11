@@ -1,6 +1,7 @@
 from flask import Flask
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import os
 
 """ 
@@ -44,6 +45,9 @@ def create_app(test_config=None):
 
     # Set up the SQLAlchemy database connection
     db = SQLAlchemy(app)
+
+    # Set up the Flask-Migrate extension
+    migrate = Migrate(app, db)
 
     # Import and register the database models
     from app.users.models import User
