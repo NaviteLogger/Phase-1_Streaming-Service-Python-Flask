@@ -4,6 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 
+# Initialize the database
+db = SQLAlchemy()
+migrate = Migrate()
+
 
 def create_app(test_config=None):
     # Create and configure the app
@@ -21,8 +25,6 @@ def create_app(test_config=None):
     # Load environment variables from .env file
     load_dotenv()
 
-    print(os.environ.get("FLASK_ENV"))
-
     # Load the appropriate config file
     if os.environ.get("FLASK_ENV") == "development":
         app.config.from_object("instance.config.DevelopmentConfig")
@@ -33,11 +35,11 @@ def create_app(test_config=None):
     else:
         print("FLASK_ENV environment variable is not set!")
 
-    # Set up the SQLAlchemy database connection
-    db = SQLAlchemy(app)
+    # Initialize the database
+    db.init_app(app)
 
-    # Set up the Flask-Migrate extension
-    migrate = Migrate(app, db)
+    # Initialize the migration
+    migrate.init_app(app, db)
 
     # Import and register the database models
     from app.users.models import User
