@@ -428,7 +428,11 @@
 }
 
 .home-login {
-  margin-right: 32px;
+  /*margin-right: 32px;*/
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  cursor: pointer;
 }
 
 .home-burger-menu {

@@ -1,6 +1,8 @@
 import React from 'react';
 import './style.css';
 
+import Link from 'next/link';
+
 export default function HomeHeader() {
     return (
         <div className="home-header">
@@ -11,13 +13,17 @@ export default function HomeHeader() {
                 <span className="logo">STREAMIFY</span>
                 <div data-thq="thq-navbar-nav" className="home-desktop-menu">
                     <nav className="home-links">
-                        <span className="bodySmall">Home</span>
+                        <Link href="/">
+                            <span className="bodySmall">Home</span>
+                        </Link>
                         <span className="home-nav22 bodySmall">Features</span>
                         <span className="home-nav42 bodySmall">About</span>
                         <span className="home-nav52 bodySmall">Contact</span>
                     </nav>
                     <div className="home-buttons">
-                        <button className="home-login buttonFlat">Login</button>
+                        <Link href="/LoginPage/LoginPage">
+                            <button className="home-login buttonFlat">Login</button>
+                        </Link>
                         <button className="buttonFilled">Register</button>
                     </div>
                 </div>
