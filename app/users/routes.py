@@ -61,4 +61,13 @@ def register():
     hashed_password = generate_password_hash(password)
 
     # Finally, create a new user
-    
+    new_user = User(username=username, email=email, password=hashed_password)
+
+    # Add the new user to the database
+    db.session.add(new_user)
+    try:
+        db.session.commit()
+        return jsonify({"message": "User was created successfully"}), 201
+    except:
+        db.session.rollback()
+        return jsonify({"error": "An error has occurred while inserting the new user into the database"}), 500
