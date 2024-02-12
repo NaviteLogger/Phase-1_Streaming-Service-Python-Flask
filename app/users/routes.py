@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app as app
-from app import db
 from . import users_bp
-from .models import User
+from .models import User, db
 from werkzeug.security import generate_password_hash
 import jwt, datetime
 
@@ -61,7 +60,7 @@ def register():
     hashed_password = generate_password_hash(password)
 
     # Finally, create a new user
-    new_user = User(username=username, email=email, password=hashed_password)
+    new_user = User(username=username, email=email, hashed_passwordsh=hashed_password)
 
     # Add the new user to the database
     db.session.add(new_user)
