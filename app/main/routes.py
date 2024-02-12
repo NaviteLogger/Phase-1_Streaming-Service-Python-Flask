@@ -1,8 +1,7 @@
 from flask import Blueprint, current_app
 from sqlalchemy import text
 from app import db
-
-main_bp = Blueprint("main_bp", __name__)
+from . import main_bp
 
 
 # @main_bp.route("/")

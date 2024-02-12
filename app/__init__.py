@@ -45,9 +45,11 @@ def create_app(test_config=None):
     from app.users.models import User
 
     # Register blueprints within app context
-    from app.main.routes import main_bp
+    from app.main import main_bp
+    from app.users import users_bp
 
     # Register the main blueprint
     app.register_blueprint(main_bp)
+    app.register_blueprint(users_bp)
 
     return app
