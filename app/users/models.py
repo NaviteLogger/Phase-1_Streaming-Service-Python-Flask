@@ -10,6 +10,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+    registration_date = db.Column(db.DateTime, server_default=db.func.now())
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

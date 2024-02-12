@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, current_app as app
 from app import db
 from . import users_bp
 from .models import User
+from werkzeug.security import generate_password_hash
 import jwt, datetime
 
 
@@ -29,3 +30,8 @@ def login():
         return jsonify({"message": "Login successful", "token": token, "redirect": "/dashboard"}), 200
     else:
         return jsonify({"message": "Login was not successful", "error": "Invalid password for the given user "}), 401
+
+
+@users_bp.route("/register", methods=["POST"])
+def register():
+    # Parse username, email and password from request
