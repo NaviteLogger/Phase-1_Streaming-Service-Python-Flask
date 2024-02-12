@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app as app
 from app import db
 from . import users_bp
 from .models import User
@@ -24,8 +24,8 @@ def login():
 
     if User.check_password(user, password):
         # Generate a JWT token
-        token = jwt.encode({"user_id": user.id, "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30)})
+        token = jwt.encode({"user_id": user.id, "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config["SECRET_KEY"], algorithm="HS256")
 
-        return jsonify({"message": "Login successful", "redirect": "/dashboard"}), 200
+        return jsonify({"message": "Login successful", "token": token, "redirect": "/dashboard"}), 200
     else:
         return jsonify({"message": "Login was not successful", "error": "Invalid password for the given user "}), 401
