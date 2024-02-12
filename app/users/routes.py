@@ -35,3 +35,30 @@ def login():
 @users_bp.route("/register", methods=["POST"])
 def register():
     # Parse username, email and password from request
+    data = request.get_json()
+    username = data.get("username")
+    email = data.get("email")
+    password = data.get("password")
+
+    if not username:
+        return jsonify({"error": "Missing username"}), 400
+    elif not email:
+        return jsonify({"error": "Missing email"}), 400
+    elif not password:
+        return jsonify({"error": "Missing password"}), 400
+
+    # Check whether the user already exists
+    username_check = User.query.filter(User.username == username).first()
+    if username_check:
+        return jsonify({"error": "User already exists"}), 400
+
+    # Check whether the email already exists
+    email_check = User.query.filter(User.email == email).first()
+    if email_check:
+        return jsonify({"error": "Email already exists"}), 400
+
+    # Hash the password
+    hashed_password = generate_password_hash(password)
+
+    # Finally, create a new user
+    
