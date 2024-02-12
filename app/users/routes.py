@@ -60,7 +60,7 @@ def register():
     hashed_password = generate_password_hash(password)
 
     # Finally, create a new user
-    new_user = User(username=username, email=email, hashed_passwordsh=hashed_password)
+    new_user = User(username=username, email=email, hashed_password=hashed_password)
 
     # Add the new user to the database
     db.session.add(new_user)
