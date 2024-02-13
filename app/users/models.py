@@ -1,4 +1,3 @@
-# app/users/models.py
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db  # Make sure to import db correctly from your app
 
