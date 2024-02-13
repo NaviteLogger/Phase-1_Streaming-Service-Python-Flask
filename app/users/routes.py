@@ -69,5 +69,5 @@ def register():
         return jsonify({"message": "User was created successfully"}), 201
     except Exception as e:
         db.session.rollback()
-        print(str(e))
+        print("An error has occurred while inserting the new user into the database", e)
         return jsonify({"error": "An error has occurred while inserting the new user into the database"}), 500
