@@ -6,6 +6,7 @@ import SearchSuggestions from '../SearchSuggestions/SearchSuggestions';
 function MovieBrowser() {
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
         if (!searchTerm) setSuggestions([]);
