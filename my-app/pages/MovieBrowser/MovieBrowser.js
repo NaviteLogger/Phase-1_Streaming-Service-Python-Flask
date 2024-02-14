@@ -32,6 +32,7 @@ function MovieBrowser() {
                 />
                 <button type="submit">Search</button>
             </form>
+            <SearchSuggestions suggestions={suggestions} />
             {/* Here you would render the movies fetched from the database */}
         </section>
     );
