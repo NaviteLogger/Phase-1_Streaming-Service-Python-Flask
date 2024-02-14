@@ -12,5 +12,5 @@ def search_for_movie():
 
     if query:
         suggestions = Movie.query.filter(Movie.title.ilike(f"%{query}%")).limit(5).all()
-        return jsonify([{"id": movie.id, "title": movie.title} for movie in suggestions]), 200
+        return jsonify([{"id": movie.id, "title": movie.title, "year": movie.year, "director": movie.director} for movie in suggestions]), 200
     return jsonify([]), 200
