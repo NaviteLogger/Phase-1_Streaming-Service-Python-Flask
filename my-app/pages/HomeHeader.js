@@ -16,7 +16,7 @@ export default function HomeHeader() {
                 <div data-thq="thq-navbar-nav" className="home-desktop-menu">
                     <nav className="home-links">
                         <Link href="/">
-                            <span className="bodySmall">Home</span>
+                            <span className="bodySmall hoverableButton">Home</span>
                         </Link>
                         <span className="home-nav22 bodySmall hoverableButton">Features</span>
                         <span className="home-nav42 bodySmall hoverableButton">About</span>
@@ -24,10 +24,10 @@ export default function HomeHeader() {
                     </nav>
                     <div className="home-buttons">
                         <Link href="/LoginPage/LoginPage">
-                            <button className="home-login buttonFlat">Login</button>
+                            <button className="home-login buttonFlat hoverableButton">Login</button>
                         </Link>
                         <Link href="/RegistrationPage/RegistrationPage">
-                            <button className="buttonFilled">Register</button>
+                            <button className="buttonFilled hoverableButton">Register</button>
                         </Link>
                     </div>
                 </div>
@@ -42,7 +42,7 @@ export default function HomeHeader() {
                 >
                     <div className="home-nav">
                         <div className="home-top">
-                            <span className="logo">STREAMIFY</span>
+                            <span className="logo hoverableButton">STREAMIFY</span>
                             <div data-thq="thq-close-menu" className="home-close-menu">
                                 <svg
                                     viewBox="0 0 1024 1024"
@@ -53,15 +53,15 @@ export default function HomeHeader() {
                             </div>
                         </div>
                         <nav className="home-links1">
-                            <span className="home-nav121 bodySmall">Home</span>
-                            <span className="home-nav221 bodySmall">Features</span>
-                            <span className="home-nav321 bodySmall">Pricing</span>
-                            <span className="home-nav421 bodySmall">About</span>
-                            <span className="home-nav521 bodySmall">Contact</span>
+                            <span className="home-nav121 bodySmall hoverableButton">Home</span>
+                            <span className="home-nav221 bodySmall hoverableButton">Features</span>
+                            <span className="home-nav321 bodySmall hoverableButton">Pricing</span>
+                            <span className="home-nav421 bodySmall hoverableButton">About</span>
+                            <span className="home-nav521 bodySmall hoverableButton">Contact</span>
                         </nav>
                         <div className="home-buttons1">
-                            <button className="buttonFlat">Login</button>
-                            <button className="buttonFilled">Register</button>
+                            <button className="buttonFlat hoverableButton">Login</button>
+                            <button className="buttonFilled hoverableButton">Register</button>
                         </div>
                     </div>
                     <div>
