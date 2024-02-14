@@ -1,11 +1,15 @@
 // MovieBrowser.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MovieBrowser.css';
 import SearchSuggestions from '../SearchSuggestions/SearchSuggestions';
 
 function MovieBrowser() {
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+
+    useEffect(() => {
+        if (!searchTerm) setSuggestions([]);
+    });
 
     const handleSearch = (e) => {
         e.preventDefault();
