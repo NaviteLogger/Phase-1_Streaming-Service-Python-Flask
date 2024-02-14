@@ -3,7 +3,9 @@ from . import movies_bp
 from .models import Movie, db
 
 
-@movies_bp.route("/search-for-movies", methods=["POST"])
-def search_for_movies():
-    data = request.get_json()
-    title = data.get("title")
+@movies_bp.route("/search-for-movie", methods=["POST"])
+def search_for_movie():
+    query = request.args.get("query", "")
+
+    if not query:
+        return jsonify({"error": "Missing query"}), 400
