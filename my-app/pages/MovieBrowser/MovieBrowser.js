@@ -16,9 +16,15 @@ function MovieBrowser() {
         // setSuggestions(responseFromDatabase);
     });
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();
-        // Implement the actual search functionality using searchTerm
+        if (!searchTerm) return;
+
+        try {
+            const response = await fetch(`/search-for-movie?query=${encodeURIComponent(searchTerm)}`);
+            const data = await response.json();
+            setSearchResults(data);
+        }
     };
 
     return (
