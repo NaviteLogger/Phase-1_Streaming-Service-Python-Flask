@@ -24,6 +24,8 @@ function MovieBrowser() {
             const response = await fetch(`/search-for-movie?query=${encodeURIComponent(searchTerm)}`);
             const data = await response.json();
             setSearchResults(data);
+        } catch (error) {
+            console.error('Failed to fetch search results:', error);
         }
     };
 
@@ -40,7 +42,15 @@ function MovieBrowser() {
                 <button type="submit">Search</button>
             </form>
             <SearchSuggestions suggestions={suggestions} />
-            {/* Here you would render the movies fetched from the database */}
+            {/* Display the search results*/}
+            <div className="search-results">
+                {searchResults.map((movie) => (
+                    <div key={movie.id} className="movie-result">
+                        <h3>{movie.title}</h3>
+                        <p>{movie.description}</p>
+                    </div>
+                ))}
+            </div>
         </section>
     );
 }
