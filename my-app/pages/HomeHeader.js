@@ -10,7 +10,9 @@ export default function HomeHeader() {
                 data-thq="thq-navbar"
                 className="navbarContainer home-navbar-interactive"
             >
-                <span className="logo">STREAMIFY</span>
+                <Link href="/">
+                    <span className="logo hoverableButton">STREAMIFY</span>
+                </Link>
                 <div data-thq="thq-navbar-nav" className="home-desktop-menu">
                     <nav className="home-links">
                         <Link href="/">
