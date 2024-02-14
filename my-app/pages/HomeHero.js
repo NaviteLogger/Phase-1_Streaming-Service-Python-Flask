@@ -74,8 +74,8 @@ export default function HomeHero() {
                         </span>
                     </span>
                     <div className="home-btn-group">
-                        <button className="buttonFilled">Get Started</button>
-                        <button className="buttonFlat">Learn More →</button>
+                        <button className="buttonFilled hoverableButton">Get Started</button>
+                        <button className="buttonFlat hoverableButton">Learn More →</button>
                     </div>
                 </div>
             </div>
