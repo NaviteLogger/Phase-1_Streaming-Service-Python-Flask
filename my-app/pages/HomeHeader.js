@@ -16,9 +16,9 @@ export default function HomeHeader() {
                         <Link href="/">
                             <span className="bodySmall">Home</span>
                         </Link>
-                        <span className="home-nav22 bodySmall">Features</span>
-                        <span className="home-nav42 bodySmall">About</span>
-                        <span className="home-nav52 bodySmall">Contact</span>
+                        <span className="home-nav22 bodySmall hoverableButton">Features</span>
+                        <span className="home-nav42 bodySmall hoverableButton">About</span>
+                        <span className="home-nav52 bodySmall hoverableButton">Contact</span>
                     </nav>
                     <div className="home-buttons">
                         <Link href="/LoginPage/LoginPage">
