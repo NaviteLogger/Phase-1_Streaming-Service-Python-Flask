@@ -9,11 +9,15 @@ function MovieBrowser() {
 
     useEffect(() => {
         if (!searchTerm) setSuggestions([]);
+        else {
+            // Fetch movie suggestions from the database using searchTerm
+        }
+        // setSuggestions(responseFromDatabase);
     });
 
     const handleSearch = (e) => {
         e.preventDefault();
-        // Implement search functionality using searchTerm
+        // Implement the actual search functionality using searchTerm
     };
 
     return (
