@@ -4,6 +4,7 @@ import './MovieBrowser.css';
 
 function MovieBrowser() {
     const [searchTerm, setSearchTerm] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
 
     const handleSearch = (e) => {
         e.preventDefault();
