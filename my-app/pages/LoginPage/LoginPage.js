@@ -29,7 +29,7 @@ function LoginPage() {
             if (response.ok) {
                 const data = await response.json();
                 // Store the token in the local storage
-                //localStorage.setItem('token', data.token);
+                localStorage.setItem('token', data.token);
 
                 // Redirect the user to the user panel
                 router.push('/UserPanel/UserPanel');
