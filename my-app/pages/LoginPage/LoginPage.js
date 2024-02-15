@@ -75,6 +75,7 @@ function LoginPage() {
                     </div>
                     <button className="login-button" type="submit">Login</button>
                 </form>
+                <div id="login-error-message"></div>
             </div>
             <Footer />
         </div>
