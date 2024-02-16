@@ -31,67 +31,72 @@ function RegistrationPage() {
                 body: JSON.stringify(userDetails),
             });
 
-            if (response.ok) {
+            if (response.status === 200) {
                 // Redirect the user to the login page
                 router.push('/LoginPage/LoginPage');
-
-            } catch (error) {
-                console.error('Registration has failed', error);
             }
-        };
+            else {
+                console.error('Registration has failed');
+            }
 
-        return (
-            <div className="registration-container-box">
-                <HomeHeader />
-                <div className="registration-container">
-                    <form className="registration-form" onSubmit={handleSubmit}>
-                        <h2 className="registration-title">Register</h2>
-                        <div className="input-group">
-                            <input
-                                name="username"
-                                type="text"
-                                placeholder="Username"
-                                value={userDetails.username}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="input-group">
-                            <input
-                                name="email"
-                                type="email"
-                                placeholder="Email"
-                                value={userDetails.email}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="input-group">
-                            <input
-                                name="password"
-                                type="password"
-                                placeholder="Password"
-                                value={userDetails.password}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="input-group">
-                            <input
-                                name="confirmPassword"
-                                type="password"
-                                placeholder="Confirm Password"
-                                value={userDetails.confirmPassword}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <button className="register-button" type="submit">Register</button>
-                    </form>
-                </div>
-                <Footer />
+        } catch (error) {
+            console.error('Registration has failed', error);
+        }
+    };
+
+    return (
+        <div className="registration-container-box">
+            <HomeHeader />
+            <div className="registration-container">
+                <form className="registration-form" onSubmit={handleSubmit}>
+                    <h2 className="registration-title">Register</h2>
+                    <div className="input-group">
+                        <input
+                            name="username"
+                            type="text"
+                            placeholder="Username"
+                            value={userDetails.username}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="input-group">
+                        <input
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            value={userDetails.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="input-group">
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            value={userDetails.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="input-group">
+                        <input
+                            name="confirmPassword"
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={userDetails.confirmPassword}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <button className="register-button" type="submit">Register</button>
+                </form>
+                <div id="registration-error-message"></div>
             </div>
-        );
-    }
+            <Footer />
+        </div>
+    );
+}
 
-    export default RegistrationPage;
+export default RegistrationPage;
