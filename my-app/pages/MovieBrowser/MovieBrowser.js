@@ -7,6 +7,7 @@ function MovieBrowser() {
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (!searchTerm) setSuggestions([]);
@@ -30,8 +31,7 @@ function MovieBrowser() {
             });
 
             if (!response.ok) {
-                const errorMessage = document.getElementById('search-error-message');
-                errorMessage.innerHTML = 'An error has occurred during the search process. Please try again.';
+                setErrorMessage('An error has occurred during the search process. Please try again.');
             }
 
             if (response.status === 200) {
@@ -67,7 +67,7 @@ function MovieBrowser() {
                     </div>
                 ))}
             </div>
-            <div className="search-error-message"></div>
+            <div className="search-error-message">{errorMessage}</div>
         </section>
     );
 }
