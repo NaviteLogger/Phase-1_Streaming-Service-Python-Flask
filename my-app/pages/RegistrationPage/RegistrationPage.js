@@ -37,10 +37,14 @@ function RegistrationPage() {
             }
             else {
                 console.error('Registration has failed');
+                const errorMessage = document.getElementById('registration-error-message');
+                errorMessage.innerHTML = 'An error has occurred during the registration process. Please try again.';
             }
 
         } catch (error) {
             console.error('Registration has failed', error);
+            const errorMessage = document.getElementById('registration-error-message');
+            errorMessage.innerHTML = 'An error has occurred during the registration process. Please try again.';
         }
     };
 
