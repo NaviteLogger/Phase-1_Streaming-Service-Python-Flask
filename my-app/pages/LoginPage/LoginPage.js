@@ -26,7 +26,7 @@ function LoginPage() {
                 body: JSON.stringify(credentials),
             });
 
-            if (response.ok) {
+            if (response.status === 200) {
                 const data = await response.json();
                 // Store the token in the local storage
                 localStorage.setItem('token', data.token);
