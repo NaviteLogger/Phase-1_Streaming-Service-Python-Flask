@@ -34,16 +34,14 @@ function LoginPage() {
                 // Redirect the user to the user panel
                 router.push('/UserPanel/UserPanel');
             } else {
-                console.error('Login failed');
-                /** 
-                    @todo: Add some more meaningful error handling
-                **/
+                console.error('Login has failed');
+                const errorMessage = document.getElementById('login-error-message');
+                errorMessage.innerHTML = 'Invalid username or password';
             }
         } catch (error) {
-            console.error('Login failed', error);
-            /**
-                @todo: Add some more meaningful error handling
-            **/
+            console.error('Login has failed', error);
+            const errorMessage = document.getElementById('login-error-message');
+            errorMessage.innerHTML = 'An error has occurred during the login process. Please try again.';
         };
     }
 
