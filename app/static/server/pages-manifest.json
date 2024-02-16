@@ -1,0 +1,22 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/Footer": "pages/Footer.js",
+  "/HomeBanner": "pages/HomeBanner.js",
+  "/HomeFAQ": "pages/HomeFAQ.js",
+  "/HomeFeatures": "pages/HomeFeatures.js",
+  "/HomeHeader": "pages/HomeHeader.js",
+  "/HomeHero": "pages/HomeHero.js",
+  "/LoginPage/LoginPage": "pages/LoginPage/LoginPage.js",
+  "/RegistrationPage/RegistrationPage": "pages/RegistrationPage/RegistrationPage.js",
+  "/": "pages/index.js",
+  "/BookmarkedMovies/BookmarkedMovies": "pages/BookmarkedMovies/BookmarkedMovies.js",
+  "/MovieBrowser/MovieBrowser": "pages/MovieBrowser/MovieBrowser.js",
+  "/UserPanel/UserPanel": "pages/UserPanel/UserPanel.js",
+  "/SearchSuggestions/SearchSuggestions": "pages/SearchSuggestions/SearchSuggestions.js",
+  "/UserInfoBox/UserInfoBox": "pages/UserInfoBox/UserInfoBox.js",
+  "/MovieRequest/MovieRequest": "pages/MovieRequest/MovieRequest.js",
+  "/not-found": "pages/not-found.js",
+  "/404": "pages/404.js"
+}

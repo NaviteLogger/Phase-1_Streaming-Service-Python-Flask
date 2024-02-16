@@ -1,0 +1,152 @@
+{
+  "polyfillFiles": [
+    "static/chunks/polyfills-c67a75d1b6f99dc8.js"
+  ],
+  "devFiles": [],
+  "ampDevFiles": [],
+  "lowPriorityFiles": [
+    "static/wgGKZUxyVrFZMT8vnUVoa/_buildManifest.js",
+    "static/wgGKZUxyVrFZMT8vnUVoa/_ssgManifest.js"
+  ],
+  "rootMainFiles": [
+    "static/chunks/webpack-306701a31a7ec2c6.js",
+    "static/chunks/fd9d1056-cc48c28d170fddc2.js",
+    "static/chunks/main-app-60d4180cd4ba8218.js"
+  ],
+  "pages": {
+    "/": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/664-1922cb8c8c810e9a.js",
+      "static/chunks/947-5d1334b483a141a2.js",
+      "static/chunks/pages/index-b37880055f6528e6.js"
+    ],
+    "/404": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/947-5d1334b483a141a2.js",
+      "static/chunks/pages/404-546ab249e137a3a1.js"
+    ],
+    "/BookmarkedMovies/BookmarkedMovies": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/css/5e9ffa389f1b972e.css",
+      "static/chunks/pages/BookmarkedMovies/BookmarkedMovies-26a1dd4ee7732023.js"
+    ],
+    "/Footer": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/pages/Footer-8bd2e697f682ef9a.js"
+    ],
+    "/HomeBanner": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/pages/HomeBanner-e19f9f3a51c57b7e.js"
+    ],
+    "/HomeFAQ": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/947-5d1334b483a141a2.js",
+      "static/chunks/pages/HomeFAQ-b85250a88b7eda57.js"
+    ],
+    "/HomeFeatures": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/947-5d1334b483a141a2.js",
+      "static/chunks/pages/HomeFeatures-4b7bb959d55169cd.js"
+    ],
+    "/HomeHeader": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/664-1922cb8c8c810e9a.js",
+      "static/chunks/pages/HomeHeader-cac340020c084ca1.js"
+    ],
+    "/HomeHero": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/pages/HomeHero-cb05b509a3e855b2.js"
+    ],
+    "/LoginPage/LoginPage": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/664-1922cb8c8c810e9a.js",
+      "static/css/23d9328d3820094b.css",
+      "static/chunks/pages/LoginPage/LoginPage-08dff6382b236a58.js"
+    ],
+    "/MovieBrowser/MovieBrowser": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/css/e16151e05f72606c.css",
+      "static/chunks/pages/MovieBrowser/MovieBrowser-ebb4f707f1354d1a.js"
+    ],
+    "/MovieRequest/MovieRequest": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/css/67f9753c72e20216.css",
+      "static/chunks/pages/MovieRequest/MovieRequest-c5c4056d256ba364.js"
+    ],
+    "/RegistrationPage/RegistrationPage": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/664-1922cb8c8c810e9a.js",
+      "static/css/e50faf46f94b2b3a.css",
+      "static/chunks/pages/RegistrationPage/RegistrationPage-c073b2f3485e8a6c.js"
+    ],
+    "/SearchSuggestions/SearchSuggestions": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/css/1cb1faa2c916d398.css",
+      "static/chunks/pages/SearchSuggestions/SearchSuggestions-c7b054b9e66e1215.js"
+    ],
+    "/UserInfoBox/UserInfoBox": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/css/2efac1b71dbe45aa.css",
+      "static/chunks/pages/UserInfoBox/UserInfoBox-c9884cf04767ad13.js"
+    ],
+    "/UserPanel/UserPanel": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/664-1922cb8c8c810e9a.js",
+      "static/css/0550c0d2bbd2c754.css",
+      "static/chunks/pages/UserPanel/UserPanel-658a045c07b8f153.js"
+    ],
+    "/_app": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/css/66daad34e53f6ed2.css",
+      "static/chunks/pages/_app-19bb3068c1b0d99e.js"
+    ],
+    "/_error": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/pages/_error-9a890acb1e81c3fc.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack-306701a31a7ec2c6.js",
+      "static/chunks/framework-0e0506be0e2d5974.js",
+      "static/chunks/main-c18647cfb0b4dc42.js",
+      "static/chunks/947-5d1334b483a141a2.js",
+      "static/chunks/pages/not-found-aa319c077c5a7ebe.js"
+    ]
+  },
+  "ampFirstPages": []
+}
