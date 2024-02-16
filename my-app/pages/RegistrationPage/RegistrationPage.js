@@ -17,10 +17,21 @@ function RegistrationPage() {
         setUserDetails({ ...userDetails, [name]: value });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // Here you can handle the registration logic
-        console.log('Registration details:', userDetails);
+        try {
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userDetails),
+            });
+
+        } catch (error) {
+            console.error('Registration has failed', error);
+        }
     };
 
     return (
