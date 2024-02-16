@@ -30,7 +30,8 @@ function MovieBrowser() {
             });
 
             if (!response.ok) {
-
+                const errorMessage = document.getElementById('search-error-message');
+                errorMessage.innerHTML = 'An error has occurred during the search process. Please try again.';
             }
 
             const data = await response.json();
