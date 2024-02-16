@@ -2,7 +2,9 @@ import React from 'react';
 import './SearchSuggestions.css';
 
 const SearchSuggestions = ({ suggestions }) => {
-    if (!suggestions.length) return null;
+    if (!suggestions.length || !Array.isArray(suggestions)) {
+        return null;
+    }
 
     return (
         <ul className="search-suggestions">
