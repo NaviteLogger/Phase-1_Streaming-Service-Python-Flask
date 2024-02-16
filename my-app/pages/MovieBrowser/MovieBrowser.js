@@ -18,10 +18,21 @@ function MovieBrowser() {
 
     const handleSearch = async (e) => {
         e.preventDefault();
-        if (!searchTerm) return;
+        if (!searchTerm) return null;
 
         try {
-            const response = await fetch(`/search-for-movie?query=${encodeURIComponent(searchTerm)}`);
+            const response = await fetch(`/search-for-movie?query=${encodeURIComponent(searchTerm)}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ searchTerm }),
+            });
+
+            if (!response.ok) {
+
+            }
+
             const data = await response.json();
             setSearchResults(data);
         } catch (error) {
@@ -51,6 +62,7 @@ function MovieBrowser() {
                     </div>
                 ))}
             </div>
+            <div className="search-error-message"></div>
         </section>
     );
 }
