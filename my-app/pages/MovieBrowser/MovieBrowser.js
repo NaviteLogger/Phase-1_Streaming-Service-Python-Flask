@@ -34,8 +34,12 @@ function MovieBrowser() {
                 errorMessage.innerHTML = 'An error has occurred during the search process. Please try again.';
             }
 
-            const data = await response.json();
-            setSearchResults(data);
+            if (response.status === 200) {
+                const data = await response.json();
+                setSearchResults(data);
+            }
+
+
         } catch (error) {
             console.error('Failed to fetch search results:', error);
         }
