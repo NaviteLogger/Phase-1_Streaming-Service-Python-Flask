@@ -2,7 +2,7 @@ import React from 'react';
 import './SearchSuggestions.css';
 
 const SearchSuggestions = ({ suggestions }) => {
-    if (!suggestions.length || !Array.isArray(suggestions)) {
+    if (!suggestions || !suggestions.length || !Array.isArray(suggestions)) {
         return null;
     }
 
@@ -14,5 +14,9 @@ const SearchSuggestions = ({ suggestions }) => {
         </ul>
     );
 }
+
+SearchSuggestions.defaultProps = {
+    suggestions: [],
+};
 
 export default SearchSuggestions;
