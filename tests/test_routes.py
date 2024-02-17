@@ -22,3 +22,9 @@ def client(app):
 def test_example_route(client):
     response = client.get("/")
     assert "Hello, world!" in response.data.decode("utf-8")
+
+
+def test_search_for_movie(client):
+    response = client.post("/movies/search-for-movie?query=the")
+    assert response.status_code == 200
+    assert response.json == []
