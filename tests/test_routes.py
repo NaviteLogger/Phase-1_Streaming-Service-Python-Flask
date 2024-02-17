@@ -1,20 +1,24 @@
 import pytest
-from flask import url_for
 from app import create_app, db
 from app.users.models import User
 
 
 @pytest.fixture
-def client():
-    app = create_app(TestConfig)
-    app.config["TESTING"] = True
-    client = app.test_client()
-
+def app():
+    # Assuming FLASK_ENV is already set to "testing" in the environment
+    app = create_app()
     with app.app_context():
-        db.create_all()  # Create test database tables
-        # Optionally, you can preload some test data here
-
-    yield client
-
+        db.create_all()
+    yield app
     with app.app_context():
-        db.drop_all()  # Clean up the database
+        db.drop_all()
+
+
+@pytest.fixture
+def client(app):
+    return app.test_client()
+
+
+def test_example_route(client):
+    response = client.get("/")
+    assert "Hello, world!" in response.data.decode("utf-8")

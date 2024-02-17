@@ -4,6 +4,6 @@ from app import db
 from . import main_bp
 
 
-# @main_bp.route("/")
-# def index():
-#     return send_from_directory(current_app.static_folder, "./
+@main_bp.route("/")
+def index():
+    return "Hello, world!"
