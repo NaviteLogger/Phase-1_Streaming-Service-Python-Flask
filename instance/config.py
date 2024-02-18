@@ -33,7 +33,8 @@ class TestingConfig(Config):
     DEBUG = True
     TESTING = True
 
-    # 
+    # SQLAlchemy configuration uri
+    
 
 
 class ProductionConfig(Config):
