@@ -94,9 +94,9 @@ function RegistrationPage() {
                             required
                         />
                     </div>
+                    <div id="registration-error-message"></div>
                     <button className="register-button" type="submit">Register</button>
                 </form>
-                <div id="registration-error-message"></div>
             </div>
             <Footer />
         </div>
