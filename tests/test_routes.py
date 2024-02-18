@@ -1,5 +1,6 @@
 import pytest
 from app import create_app, db
+from app.movies.models import Movie
 
 
 @pytest.fixture(scope="function")
@@ -29,8 +30,8 @@ def test_client():
 @pytest.fixture(scope="function")
 def prepare_database():
     # Setup that needs to be done before each test, e.g., inserting initial data
-    # db.session.add(...)
-    # db.session.commit()
+    test_movie = Movie(title="Edge of Tomorrow", year=2014, director="Doug Liman")
+    db.session.add(test_movie)
 
     yield  # This allows the test to run with the setup in place
 
@@ -49,6 +50,7 @@ def test_search_for_movie(test_client):
     assert response.get_json() == expected_response
 
 
+# Add multiple test cases for the login route
 @pytest.mark.parametrize(
     "username, password, expected_response, status_code",
     [
@@ -61,6 +63,7 @@ def test_login_route(test_client, username, password, expected_response, status_
     assert response.get_json() == expected_response
 
 
+# Add multiple test cases for the register route
 @pytest.mark.parametrize(
     "username, email, password, expected_response, status_code",
     [
