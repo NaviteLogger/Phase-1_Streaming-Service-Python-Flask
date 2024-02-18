@@ -50,19 +50,6 @@ def test_search_for_movie(test_client):
     assert response.get_json() == expected_response
 
 
-# Add multiple test cases for the login route
-@pytest.mark.parametrize(
-    "username, password, expected_response, status_code",
-    [
-        ("testuser", "testpassword", {"error": "User was not found in the database"}, 404),
-    ],
-)
-def test_login_route(test_client, username, password, expected_response, status_code):
-    response = test_client.post("/login", json={"username": username, "password": password})
-    assert response.status_code == status_code
-    assert response.get_json() == expected_response
-
-
 # Add multiple test cases for the register route
 @pytest.mark.parametrize(
     "username, email, password, expected_response, status_code",
@@ -73,5 +60,18 @@ def test_login_route(test_client, username, password, expected_response, status_
 )
 def test_register_route(test_client, username, email, password, expected_response, status_code):
     response = test_client.post("/register", json={"username": username, "email": email, "password": password})
+    assert response.status_code == status_code
+    assert response.get_json() == expected_response
+
+
+# Add multiple test cases for the login route
+@pytest.mark.parametrize(
+    "username, password, expected_response, status_code",
+    [
+        ("testuser", "testpassword", {"error": "User was not found in the database"}, 404),
+    ],
+)
+def test_login_route(test_client, username, password, expected_response, status_code):
+    response = test_client.post("/login", json={"username": username, "password": password})
     assert response.status_code == status_code
     assert response.get_json() == expected_response
