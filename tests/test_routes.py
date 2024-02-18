@@ -68,7 +68,7 @@ def test_register_route(test_client, username, email, password, expected_respons
 @pytest.mark.parametrize(
     "username, password, expected_response, status_code",
     [
-        ("testuser", "testpassword", {"error": "User was not found in the database"}, 404),
+        ("non-existentuser", "non-existentpassword", {"error": "User was not found in the database"}, 404),
     ],
 )
 def test_login_route(test_client, username, password, expected_response, status_code):
