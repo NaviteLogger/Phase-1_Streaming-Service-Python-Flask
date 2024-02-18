@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 import jwt, datetime
 
 
-@users_bp.route("/login", methods=["GET"])
+@users_bp.route("/login", methods=["POST"])
 def login():
     # Parse username and password from request
     data = request.get_json()

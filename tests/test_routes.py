@@ -26,3 +26,12 @@ def test_search_for_movie(client):
     # Expected response
     expected_response = [{"id": 1, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]
     assert response.get_json() == expected_response
+
+
+def test_login_route(client):
+    response = client.post("/login", json={"username": "testuser", "password": "testpassword"})
+    assert response.status_code == 404
+
+    # Expected response
+    expected_response = {"error": "User was not found in the database"}
+    assert response.get_json() == expected_response
