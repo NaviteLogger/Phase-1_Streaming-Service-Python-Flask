@@ -2,49 +2,65 @@ import pytest
 from app import create_app, db
 
 
-@pytest.fixture
-def app():
-    app = create_app()
-    yield app
-
-
-@pytest.fixture
-def client(app):
-    return app.test_client()
-
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def test_client():
-    flask_app = create_app
+    app = create_app()
+
+    # Establish a connection and start a transaction
+    connection = db.engine.connect()
+    transaction = connection.begin()
+
+    # Bind the session to the transaction
+    options = dict(bind=connection, binds={})
+    session = db.create_scoped_session(options=options)
+    db.session = session
+
+    # Use the test client with the transaction
+    with app.test_client() as testing_client:
+        with app.app_context():
+            yield testing_client
+
+    # Roll back the transaction and close the connection
+    transaction.rollback()
+    connection.close()
+    session.remove()
 
 
-def test_example_route(client):
-    response = client.get("/")
+@pytest.fixture(scope="function")
+def prepare_database():
+    # Setup that needs to be done before each test, e.g., inserting initial data
+    # db.session.add(...)
+    # db.session.commit()
+
+    yield  # This allows the test to run with the setup in place
+
+    # The rollback in the test_client fixture will undo any changes after the yield
+
+
+def test_example_route(test_client):
+    response = test_client.get("/")
     assert "Hello, world!" in response.data.decode("utf-8")
 
 
-def test_search_for_movie(client):
-    response = client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
+def test_search_for_movie(test_client):
+    response = test_client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
     assert response.status_code == 200
-
-    # Expected response
     expected_response = [{"id": 1, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]
     assert response.get_json() == expected_response
 
 
-# Parametrize the login route test
 @pytest.mark.parametrize(
     "username, password, expected_response, status_code",
     [
         ("testuser", "testpassword", {"error": "User was not found in the database"}, 404),
     ],
 )
-def test_login_route(client, username, password, expected_response, status_code):
-    response = client.post("/login", json={"username": username, "password": password})
+def test_login_route(test_client, username, password, expected_response, status_code):
+    response = test_client.post("/login", json={"username": username, "password": password})
     assert response.status_code == status_code
     assert response.get_json() == expected_response
 
 
-# Parametrize the register route test
 @pytest.mark.parametrize(
     "username, email, password, expected_response, status_code",
     [
@@ -52,7 +68,7 @@ def test_login_route(client, username, password, expected_response, status_code)
         ("testuser", "testemail", "testpassword", {"error": "User already exists"}, 400),
     ],
 )
-def test_register_route(client, username, email, password, expected_response, status_code):
-    response = client.post("/register", json={"username": username, "email": email, "password": password})
+def test_register_route(test_client, username, email, password, expected_response, status_code):
+    response = test_client.post("/register", json={"username": username, "email": email, "password": password})
     assert response.status_code == status_code
     assert response.get_json() == expected_response
