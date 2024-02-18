@@ -28,10 +28,14 @@ def test_search_for_movie(client):
     assert response.get_json() == expected_response
 
 
-def test_login_route(client):
-    response = client.post("/login", json={"username": "testuser", "password": "testpassword"})
-    assert response.status_code == 404
-
-    # Expected response
-    expected_response = {"error": "User was not found in the database"}
+# Parametrize the loin route test
+@pytest.mark.parametrize(
+    "username, password, expected_response, status_code",
+    [
+        ("testuser", "testpassword", {"error": "User was not found in the database"}, 404),
+    ],
+)
+def test_login_route(client, username, password, expected_response, status_code):
+    response = client.post("/login", json={"username": username, "password": password})
+    assert response.status_code == status_code
     assert response.get_json() == expected_response
