@@ -5,9 +5,12 @@ from app.movies.models import Movie
 
 @pytest.fixture(scope="function")
 def test_client():
+    # This line initializes the Flask application by calling the create_app function without passing a specific test
+    # configuration. The create_app function automatically configures the app for testing based on environment variable.
     app = create_app()
 
-    # Establish a connection and start a transaction
+    # These lines start a new database transaction. By creating a scoped session that is bound to this transaction,
+    # any database operations performed during the test will happen within this transaction
     connection = db.engine.connect()
     transaction = connection.begin()
 
@@ -16,7 +19,8 @@ def test_client():
     session = db.create_scoped_session(options=options)
     db.session = session
 
-    # Use the test client with the transaction
+    # This opens a context that provides a test client. This client can be used to send requests
+    # to the Flask application without running a server.
     with app.test_client() as testing_client:
         with app.app_context():
             yield testing_client
@@ -29,7 +33,7 @@ def test_client():
 
 @pytest.fixture(scope="function")
 def prepare_database():
-    # Setup that needs to be done before each test, e.g., inserting initial data
+    # Setup that needs to be done before each test
     test_movie = Movie(title="Edge of Tomorrow", year=2014, director="Doug Liman")
     db.session.add(test_movie)
 
