@@ -28,7 +28,7 @@ def test_search_for_movie(client):
     assert response.get_json() == expected_response
 
 
-# Parametrize the loin route test
+# Parametrize the login route test
 @pytest.mark.parametrize(
     "username, password, expected_response, status_code",
     [
@@ -39,3 +39,12 @@ def test_login_route(client, username, password, expected_response, status_code)
     response = client.post("/login", json={"username": username, "password": password})
     assert response.status_code == status_code
     assert response.get_json() == expected_response
+
+# Parametrize the register route test
+@pytest.mark.parametrize(
+    "username, email, password, expected_response, status_code",
+    [
+        ("testuser", "testemail", "testpassword", {"message": "User created successfully"}, 201),
+        ("testuser", "testemail", "testpassword", {"error": "User already exists"}, 400),
+    ],
+)
