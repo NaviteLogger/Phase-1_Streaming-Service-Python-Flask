@@ -5,13 +5,8 @@ from app.users.models import User
 
 @pytest.fixture
 def app():
-    # Assuming FLASK_ENV is already set to "testing" in the environment
     app = create_app()
-    with app.app_context():
-        db.create_all()
     yield app
-    with app.app_context():
-        db.drop_all()
 
 
 @pytest.fixture
