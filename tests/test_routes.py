@@ -40,6 +40,7 @@ def test_login_route(client, username, password, expected_response, status_code)
     assert response.status_code == status_code
     assert response.get_json() == expected_response
 
+
 # Parametrize the register route test
 @pytest.mark.parametrize(
     "username, email, password, expected_response, status_code",
@@ -48,3 +49,7 @@ def test_login_route(client, username, password, expected_response, status_code)
         ("testuser", "testemail", "testpassword", {"error": "User already exists"}, 400),
     ],
 )
+def test_register_route(client, username, email, password, expected_response, status_code):
+    response = client.post("/register", json={"username": username, "email": email, "password": password})
+    assert response.status_code == status_code
+    assert response.get_json() == expected_response
