@@ -25,4 +25,4 @@ def test_search_for_movie(client):
 
     # Expected response
     expected_response = [{"id": 1, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]
-    assert response.json() == expected_response
+    assert response.get_json() == expected_response
