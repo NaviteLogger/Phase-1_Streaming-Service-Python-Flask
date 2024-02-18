@@ -66,7 +66,7 @@ def register():
     db.session.add(new_user)
     try:
         db.session.commit()
-        return jsonify({"message": "User was created successfully"}), 201
+        return jsonify({"message": "User created successfully"}), 201
     except Exception as e:
         db.session.rollback()
         print("An error has occurred while inserting the new user into the database", e)

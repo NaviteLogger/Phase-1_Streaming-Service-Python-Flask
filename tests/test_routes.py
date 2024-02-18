@@ -1,6 +1,5 @@
 import pytest
 from app import create_app, db
-from app.users.models import User
 
 
 @pytest.fixture
@@ -12,6 +11,10 @@ def app():
 @pytest.fixture
 def client(app):
     return app.test_client()
+
+@pytest.fixture(scope="module")
+def test_client():
+    flask_app = create_app
 
 
 def test_example_route(client):
