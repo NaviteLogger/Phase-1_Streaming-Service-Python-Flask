@@ -20,6 +20,9 @@ def test_example_route(client):
 
 
 def test_search_for_movie(client):
-    response = client.post("/movies/search-for-movie?query=the")
+    response = client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
     assert response.status_code == 200
-    assert response.json == []
+
+    # Expected response
+    expected_response = [{"id": 1, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]
+    assert response.json() == expected_response

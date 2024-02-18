@@ -48,9 +48,11 @@ def create_app(test_config=None):
     # Register blueprints within app context
     from app.main import main_bp
     from app.users import users_bp
+    from app.movies import movies_bp
 
     # Register the main blueprint
     app.register_blueprint(main_bp)
     app.register_blueprint(users_bp)
+    app.register_blueprint(movies_bp)
 
     return app
