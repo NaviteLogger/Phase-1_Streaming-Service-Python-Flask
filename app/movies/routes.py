@@ -3,22 +3,14 @@ from . import movies_bp
 from .models import Movie, db
 
 
-@app.route("/search-for-movie", methods=["POST"])
+@movies_bp.route("/search-for-movie", methods=["POST"])
 def search_for_movie():
-    query = request.args.get("query")  # Extract query parameter from the request
+    query = request.args.get("query", "")
 
-    # Check if the query parameter is provided
     if not query:
-        return jsonify({"error": "Missing query parameter"}), 400  # Return error if query is missing
+        return jsonify({"error": "Missing query"}), 400
 
-    # Attempt to find the movie in the database
-    movie = Movie.query.filter_by(title=query).first()
-
-    # Check if the movie was found
-    if movie is None:
-        return jsonify({"error": "Movie not found"}), 404  # Return error if movie is not found
-
-    # If the movie is found, return the movie details
-    movie_data = {"title": movie.title, "year": movie.year, "director": movie.director, "genre": movie.genre}
-
-    return jsonify(movie_data), 200
+    if query:
+        suggestions = Movie.query.filter(Movie.title.ilike(f"%{query}%")).limit(5).all()
+        return jsonify([{"id": movie.id, "title": movie.title, "year": movie.year, "director": movie.director, "genre": movie.genre} for movie in suggestions]), 200
+    return jsonify([]), 200
