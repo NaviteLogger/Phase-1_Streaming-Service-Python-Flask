@@ -109,6 +109,7 @@ def test_login_route(test_client, prepare_user_data, username, password, expecte
 
     # Perform the login attempt
     response = test_client.post("/login", json={"username": username, "password": password})
+    json_data = response.get_json()
 
     assert response.status_code == status_code
     # Assert for static fields
