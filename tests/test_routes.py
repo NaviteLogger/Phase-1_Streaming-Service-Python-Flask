@@ -20,7 +20,6 @@ def test_client():
         any database operations performed during the test will happen within this transaction
         """
         connection = db.engine.connect()
-        transaction = connection.begin()
 
         # Configure the session to use the connection
         session_factory = sessionmaker(bind=connection)
