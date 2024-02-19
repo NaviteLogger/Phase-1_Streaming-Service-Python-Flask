@@ -83,7 +83,7 @@ def test_search_for_movie(test_client, prepare_movie_data):
         ("testuser", "testemail", "testpassword", {"error": "User already exists"}, 400),
     ],
 )
-def test_register_route(test_client, prepare_user_data, username, email, password, expected_response, status_code):
+def test_register_route(test_client, username, email, password, expected_response, status_code):
     # prepare_user_data fixture ensures a user is available for the second test case
     response = test_client.post("/register", json={"username": username, "email": email, "password": password})
     assert response.status_code == status_code
@@ -91,15 +91,25 @@ def test_register_route(test_client, prepare_user_data, username, email, passwor
 
 
 @pytest.mark.parametrize(
-    "setup, username, password, expected_response, status_code",
+    "username, password, expected_response, status_code, user_exists",
     [
-        ("prepare_user_data", "testuser", "testpassword", {"message": "Login successful", "redirect": "/dashboard"}, 200),
-        ("prepare_user_data", "testuser", "wrongpassword", {"message": "Login was not successful", "error": "Invalid password for the given user"}, 401),
-        # No user setup for non-existent user case
-        (None, "non-existentuser", "non-existentpassword", {"error": "User was not found in the database"}, 404),
+        # Test case where user exists and password is correct
+        ("testuser", "testpassword", {"message": "Login successful", "redirect": "/dashboard"}, 200, True),
+        # Test case where user exists but password is wrong
+        ("testuser", "wrongpassword", {"message": "Login was not successful", "error": "Invalid password for the given user"}, 401, True),
+        # Test case for a non-existent user
+        ("non-existentuser", "non-existentpassword", {"error": "User was not found in the database"}, 404, False),
     ],
 )
-def test_login_route(test_client, setup, username, password, expected_response, status_code):
+def test_login_route(test_client, prepare_user_data, username, password, expected_response, status_code, user_exists):
+    # Conditionally prepare user data based on the test case needs
+    if user_exists:
+        # The prepare_user_data fixture is used to ensure the user exists for the test
+        prepare_user_data
+
+    # Perform the login attempt
     response = test_client.post("/login", json={"username": username, "password": password})
+
+    # Assert the response status code and message
     assert response.status_code == status_code
     assert response.get_json() == expected_response
