@@ -66,12 +66,21 @@ def test_example_route(test_client):
     assert "Hello, world!" in response.data.decode("utf-8")
 
 
-def test_search_for_movie(test_client, prepare_movie_data):
+@pytest.mark.parametrize(
+    "title, year, director, genre, status_code",
+    [
+        ("Edge of Tomorrow", 2014, "Doug Liman", "Action", 200),
+    ],
+)
+def test_search_for_movie(test_client, prepare_movie_data, title, year, director, genre, status_code):
     response = test_client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
-    assert response.status_code == 200
-    movie = Movie.query.filter_by(title="Edge of Tomorrow").first()
-    expected_response = [{"id": movie.id, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]  # Dynamically get the ID
-    assert response.get_json() == expected_response
+    assert response.status_code == status_code
+
+    json_data = response.get_json()
+    assert json_data[0].get("title") == title
+    assert json_data[0].get("year") == year
+    assert json_data[0].get("director") == director
+    assert json_data[0].get("genre") == genre
 
 
 @pytest.mark.parametrize(
