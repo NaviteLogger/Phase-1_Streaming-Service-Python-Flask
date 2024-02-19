@@ -65,10 +65,10 @@ def test_example_route(test_client):
 
 
 def test_search_for_movie(test_client, prepare_movie_data):
-    # The test now runs with movie data prepared
     response = test_client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
     assert response.status_code == 200
-    expected_response = [{"id": 1, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]
+    movie = Movie.query.filter_by(title="Edge of Tomorrow").first()
+    expected_response = [{"id": movie.id, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]  # Dynamically get the ID
     assert response.get_json() == expected_response
 
 
@@ -97,7 +97,6 @@ def test_register_route(test_client, prepare_user_data, username, email, passwor
         # No user setup for non-existent user case
         (None, "non-existentuser", "non-existentpassword", {"error": "User was not found in the database"}, 404),
     ],
-    indirect=["setup"],
 )
 def test_login_route(test_client, setup, username, password, expected_response, status_code):
     response = test_client.post("/login", json={"username": username, "password": password})
