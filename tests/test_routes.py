@@ -74,7 +74,7 @@ def test_register_route(test_client, username, email, password, expected_respons
     [
         ("non-existentuser", "non-existentpassword", {"error": "User was not found in the database"}, 404),
         ("testuser", "testpassword", {"message": "Login successful", "redirect": "/dashboard"}, 200),
-        ("testuser", "wrongpassword", {"message": "Login was not successful", "error": "Invalid password for the given user "}, 401),
+        ("testuser", "wrongpassword", {"message": "Login was not successful", "error": "Invalid password for the given user"}, 401),
     ],
 )
 def test_login_route(test_client, username, password, expected_response, status_code):

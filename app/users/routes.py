@@ -28,7 +28,7 @@ def login():
 
         return jsonify({"message": "Login successful", "token": token, "redirect": "/dashboard"}), 200
     else:
-        return jsonify({"message": "Login was not successful", "error": "Invalid password for the given user "}), 401
+        return jsonify({"message": "Login was not successful", "error": "Invalid password for the given user"}), 401
 
 
 @users_bp.route("/register", methods=["POST"])
