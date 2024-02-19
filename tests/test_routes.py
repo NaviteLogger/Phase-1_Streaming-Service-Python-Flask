@@ -1,6 +1,7 @@
 import pytest
 from app import create_app, db
 from app.movies.models import Movie
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 
 @pytest.fixture(scope="function")
@@ -19,10 +20,10 @@ def test_client():
         connection = db.engine.connect()
         transaction = connection.begin()
 
-        # Bind the session to the transaction
-        options = dict(bind=connection, binds={})
-        session = db.create_scoped_session(options=options)
-        db.session = session
+        # Configure the session to use the connection
+        session_factory = sessionmaker(bind=connection)
+        Session = scoped_session(session_factory)
+        db.session = Session()
 
         """
         This opens a context that provides a test client. This client can be used to send requests
@@ -32,10 +33,10 @@ def test_client():
             with app.app_context():
                 yield testing_client
 
-    # Roll back the transaction (undoing all database operations) and close the connection
-    transaction.rollback()
-    connection.close()
-    session.remove()
+        # Roll back the transaction (undoing all database operations) and close the connection
+        Session.remove()
+        transaction.rollback()
+        connection.close()
 
 
 @pytest.fixture(scope="function")
