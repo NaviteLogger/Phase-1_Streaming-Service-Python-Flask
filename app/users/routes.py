@@ -22,7 +22,7 @@ def login():
     if not user:
         return jsonify({"error": "User was not found in the database"}), 404
 
-    if User.check_password(user, password):
+    if user.check_password(user, password):
         # Generate a JWT token
         token = jwt.encode({"user_id": user.id, "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config["SECRET_KEY"], algorithm="HS256")
 

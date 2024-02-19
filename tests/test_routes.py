@@ -50,7 +50,6 @@ def prepare_movie_data():
 
 
 @pytest.fixture(scope="function")
-@pytest.fixture(scope="function")
 def prepare_user_data():
     # Assuming your User model has a method to set password
     user = User(username="testuser", email="testemail")
