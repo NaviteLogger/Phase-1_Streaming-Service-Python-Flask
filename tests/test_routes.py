@@ -1,6 +1,8 @@
 import pytest
 from app import create_app, db
 from app.movies.models import Movie
+from app.users.models import User
+from werkzeug.security import generate_password_hash
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 
@@ -39,14 +41,22 @@ def test_client():
 
 
 @pytest.fixture(scope="function")
-def prepare_database():
-    # Setup that needs to be done before each test
-    test_movie = Movie(title="Edge of Tomorrow", year=2014, director="Doug Liman", genre="Action")
-    db.session.add(test_movie)
+def prepare_movie_data():
+    # Setup movie data before each test
+    db.session.add(Movie(title="Edge of Tomorrow", year=2014, director="Doug Liman", genre="Action"))
+    db.session.commit()
+    yield
+    db.session.rollback()
 
-    yield  # This allows the test to run with the setup in place
 
-    # The rollback in the test_client fixture will undo any changes after the yield
+@pytest.fixture(scope="function")
+def prepare_user_data():
+    # Setup user data before each test
+    hashed_password = generate_password_hash("testpassword")
+    db.session.add(User(username="testuser", email="testemail", password_hash=hashed_password))
+    db.session.commit()
+    yield
+    db.session.rollback()
 
 
 def test_example_route(test_client):
@@ -54,37 +64,42 @@ def test_example_route(test_client):
     assert "Hello, world!" in response.data.decode("utf-8")
 
 
-def test_search_for_movie(test_client, prepare_database):
+def test_search_for_movie(test_client, prepare_movie_data):
+    # The test now runs with movie data prepared
     response = test_client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
     assert response.status_code == 200
     expected_response = [{"id": 1, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]
     assert response.get_json() == expected_response
 
 
-# Add multiple test cases for the register route
+# For user-related tests, we ensure the user data is prepared beforehand
 @pytest.mark.parametrize(
     "username, email, password, expected_response, status_code",
     [
-        ("testuser", "testemail", "testpassword", {"message": "User created successfully"}, 201),
+        # Assuming this creates a new user
+        ("newuser", "newemail@test.com", "newpassword", {"message": "User created successfully"}, 201),
+        # Trying to create the same user again should fail
         ("testuser", "testemail", "testpassword", {"error": "User already exists"}, 400),
     ],
 )
-def test_register_route(test_client, username, email, password, expected_response, status_code):
+def test_register_route(test_client, prepare_user_data, username, email, password, expected_response, status_code):
+    # prepare_user_data fixture ensures a user is available for the second test case
     response = test_client.post("/register", json={"username": username, "email": email, "password": password})
     assert response.status_code == status_code
     assert response.get_json() == expected_response
 
 
-# Add multiple test cases for the login route
 @pytest.mark.parametrize(
-    "username, password, expected_response, status_code",
+    "setup, username, password, expected_response, status_code",
     [
-        ("non-existentuser", "non-existentpassword", {"error": "User was not found in the database"}, 404),
-        ("testuser", "testpassword", {"message": "Login successful", "redirect": "/dashboard"}, 200),
-        ("testuser", "wrongpassword", {"message": "Login was not successful", "error": "Invalid password for the given user"}, 401),
+        ("prepare_user_data", "testuser", "testpassword", {"message": "Login successful", "redirect": "/dashboard"}, 200),
+        ("prepare_user_data", "testuser", "wrongpassword", {"message": "Login was not successful", "error": "Invalid password for the given user"}, 401),
+        # No user setup for non-existent user case
+        (None, "non-existentuser", "non-existentpassword", {"error": "User was not found in the database"}, 404),
     ],
+    indirect=["setup"],
 )
-def test_login_route(test_client, username, password, expected_response, status_code):
+def test_login_route(test_client, setup, username, password, expected_response, status_code):
     response = test_client.post("/login", json={"username": username, "password": password})
     assert response.status_code == status_code
     assert response.get_json() == expected_response
