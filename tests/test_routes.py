@@ -110,6 +110,9 @@ def test_login_route(test_client, prepare_user_data, username, password, expecte
     # Perform the login attempt
     response = test_client.post("/login", json={"username": username, "password": password})
 
-    # Assert the response status code and message
     assert response.status_code == status_code
-    assert response.get_json() == expected_response
+    # Assert for static fields
+    assert json_data["message"] == expected_response["message"]
+    assert json_data["redirect"] == expected_response["redirect"]
+    # Assert the presence of the token without checking its value
+    assert "token" in json_data
