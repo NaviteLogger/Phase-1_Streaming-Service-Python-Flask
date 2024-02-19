@@ -11,25 +11,26 @@ def test_client():
     """
     app = create_app()
 
-    """
-    These lines start a new database transaction. By creating a scoped session that is bound to this transaction,
-    any database operations performed during the test will happen within this transaction
-    """
-    connection = db.engine.connect()
-    transaction = connection.begin()
+    with app.app_context():
+        """
+        These lines start a new database transaction. By creating a scoped session that is bound to this transaction,
+        any database operations performed during the test will happen within this transaction
+        """
+        connection = db.engine.connect()
+        transaction = connection.begin()
 
-    # Bind the session to the transaction
-    options = dict(bind=connection, binds={})
-    session = db.create_scoped_session(options=options)
-    db.session = session
+        # Bind the session to the transaction
+        options = dict(bind=connection, binds={})
+        session = db.create_scoped_session(options=options)
+        db.session = session
 
-    """
-    This opens a context that provides a test client. This client can be used to send requests
-    to the Flask application without running a server.
-    """
-    with app.test_client() as testing_client:
-        with app.app_context():
-            yield testing_client
+        """
+        This opens a context that provides a test client. This client can be used to send requests
+        to the Flask application without running a server.
+        """
+        with app.test_client() as testing_client:
+            with app.app_context():
+                yield testing_client
 
     # Roll back the transaction (undoing all database operations) and close the connection
     transaction.rollback()
