@@ -20,15 +20,15 @@ def login():
     user = User.query.filter_by(username=username).first()
 
     if not user:
-        return jsonify({"error": "User was not found in the database"}), 404
+        return jsonify({"status": "error", "message": "User not found"}), 404
 
     if user.check_password(password):
         # Generate a JWT token
         token = jwt.encode({"user_id": user.id, "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config["SECRET_KEY"], algorithm="HS256")
 
-        return jsonify({"message": "Login successful", "token": token, "redirect": "/dashboard"}), 200
+        return jsonify({"status": "success", "message": "Login successful", "redirect": "/dashboard", "token": token}), 200
     else:
-        return jsonify({"message": "Login was not successful", "error": "Invalid password for the given user"}), 401
+        return jsonify({"status": "error", "message": "Invalid password for the given user"}), 401
 
 
 @users_bp.route("/register", methods=["POST"])

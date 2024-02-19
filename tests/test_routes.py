@@ -91,29 +91,29 @@ def test_register_route(test_client, username, email, password, expected_respons
 
 
 @pytest.mark.parametrize(
-    "username, password, expected_response, status_code, user_exists",
+    "username, password, expected_status, expected_message, status_code, user_exists",
     [
         # Test case where user exists and password is correct
-        ("testuser", "testpassword", {"message": "Login successful", "redirect": "/dashboard"}, 200, True),
+        ("testuser", "testpassword", "success", "Login successful", 200, True),
         # Test case where user exists but password is wrong
-        ("testuser", "wrongpassword", {"message": "Login was not successful", "error": "Invalid password for the given user"}, 401, True),
+        ("testuser", "wrongpassword", "error", "Invalid password for the given user", 401, True),
         # Test case for a non-existent user
-        ("non-existentuser", "non-existentpassword", {"error": "User was not found in the database"}, 404, False),
+        ("non-existentuser", "non-existentpassword", "error", "User not found", 404, False),
     ],
 )
-def test_login_route(test_client, prepare_user_data, username, password, expected_response, status_code, user_exists):
-    # Conditionally prepare user data based on the test case needs
+def test_login_route(test_client, prepare_user_data, username, password, expected_status, expected_message, status_code, user_exists):
     if user_exists:
-        # The prepare_user_data fixture is used to ensure the user exists for the test
+        # Ensure the user is prepared for tests that require an existing user.
         prepare_user_data
 
     # Perform the login attempt
     response = test_client.post("/login", json={"username": username, "password": password})
-    json_data = response.get_json()
-
     assert response.status_code == status_code
-    # Assert for static fields
-    assert json_data["message"] == expected_response["message"]
-    assert json_data["redirect"] == expected_response["redirect"]
-    # Assert the presence of the token without checking its value
-    assert "token" in json_data
+
+    json_data = response.get_json()
+    assert json_data.get("status") == expected_status
+    assert json_data.get("message") == expected_message
+
+    # For successful login, additionally check for the presence of the token
+    if status_code == 200:
+        assert "token" in json_data
