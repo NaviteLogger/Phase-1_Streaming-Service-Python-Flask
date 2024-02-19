@@ -50,10 +50,12 @@ def prepare_movie_data():
 
 
 @pytest.fixture(scope="function")
+@pytest.fixture(scope="function")
 def prepare_user_data():
-    # Setup user data before each test
-    hashed_password = generate_password_hash("testpassword")
-    db.session.add(User(username="testuser", email="testemail", password_hash=hashed_password))
+    # Assuming your User model has a method to set password
+    user = User(username="testuser", email="testemail")
+    user.set_password("testpassword")
+    db.session.add(user)
     db.session.commit()
     yield
     db.session.rollback()
