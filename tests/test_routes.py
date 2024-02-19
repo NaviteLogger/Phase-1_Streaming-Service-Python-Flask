@@ -80,15 +80,18 @@ def test_search_for_movie(test_client, prepare_movie_data):
         # Case for a new user registration
         ("newuser", "newemail@test.com", "newpassword", "success", "User created successfully", 201),
         # Case for attempting to register a user with an existing username
-        ("testuser", "testemail", "testpassword", "error", "User already exists", 400),
+        ("newuser", "testemail@test.com", "testpassword", "error", "User already exists", 400),
         # Additional case for attempting to register a user with an existing email
-        ("anotheruser", "testemail", "testpassword", "error", "Email already exists", 400),
+        ("anotheruser", "newemail@test.com", "testpassword", "error", "Email already exists", 400),
+        # Case for missing username
+        ("", "newemail@test.com", "newpassword", "error", "Missing username", 400),
     ],
 )
 def test_register_route(test_client, username, email, password, expected_status, expected_message, status_code):
     response = test_client.post("/register", json={"username": username, "email": email, "password": password})
     json_data = response.get_json()
 
+    print(json_data)
     assert response.status_code == status_code
     assert json_data["status"] == expected_status
     assert json_data["message"] == expected_message
