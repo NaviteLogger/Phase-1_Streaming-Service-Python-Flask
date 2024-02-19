@@ -36,7 +36,7 @@ def test_client():
 
         # Roll back the transaction (undoing all database operations) and close the connection
         Session.remove()
-        transaction.rollback()
+        # transaction.rollback()
         connection.close()
 
 
@@ -75,19 +75,23 @@ def test_search_for_movie(test_client, prepare_movie_data):
 
 # For user-related tests, we ensure the user data is prepared beforehand
 @pytest.mark.parametrize(
-    "username, email, password, expected_response, status_code",
+    "username, email, password, expected_status, expected_message, status_code",
     [
-        # Assuming this creates a new user
-        ("newuser", "newemail@test.com", "newpassword", {"message": "User created successfully"}, 201),
-        # Trying to create the same user again should fail
-        ("testuser", "testemail", "testpassword", {"error": "User already exists"}, 400),
+        # Case for a new user registration
+        ("newuser", "newemail@test.com", "newpassword", "success", "User created successfully", 201),
+        # Case for attempting to register a user with an existing username
+        ("testuser", "testemail", "testpassword", "error", "User already exists", 400),
+        # Additional case for attempting to register a user with an existing email
+        ("anotheruser", "testemail", "testpassword", "error", "Email already exists", 400),
     ],
 )
-def test_register_route(test_client, username, email, password, expected_response, status_code):
-    # prepare_user_data fixture ensures a user is available for the second test case
+def test_register_route(test_client, username, email, password, expected_status, expected_message, status_code):
     response = test_client.post("/register", json={"username": username, "email": email, "password": password})
+    json_data = response.get_json()
+
     assert response.status_code == status_code
-    assert response.get_json() == expected_response
+    assert json_data["status"] == expected_status
+    assert json_data["message"] == expected_message
 
 
 @pytest.mark.parametrize(

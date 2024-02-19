@@ -40,21 +40,21 @@ def register():
     password = data.get("password")
 
     if not username:
-        return jsonify({"error": "Missing username"}), 400
+        return jsonify({"status": "error", "message": "Missing username"}), 400
     elif not email:
-        return jsonify({"error": "Missing email"}), 400
+        return jsonify({"status": "error", "message": "Missing email"}), 400
     elif not password:
-        return jsonify({"error": "Missing password"}), 400
+        return jsonify({"status": "error", "message": "Missing password"}), 400
 
     # Check whether the user already exists
     username_check = User.query.filter(User.username == username).first()
     if username_check:
-        return jsonify({"error": "User already exists"}), 400
+        return jsonify({"status": "error", "message": "User already exists"}), 400
 
     # Check whether the email already exists
     email_check = User.query.filter(User.email == email).first()
     if email_check:
-        return jsonify({"error": "Email already exists"}), 400
+        return jsonify({"status": "error", "message": "Email already exists"}), 400
 
     # Hash the password
     hashed_password = generate_password_hash(password)
@@ -66,8 +66,8 @@ def register():
     db.session.add(new_user)
     try:
         db.session.commit()
-        return jsonify({"message": "User created successfully"}), 201
+        return jsonify({"status": "success", "message": "User created successfully"}), 201
     except Exception as e:
         db.session.rollback()
         print("An error has occurred while inserting the new user into the database", e)
-        return jsonify({"error": "An error has occurred while inserting the new user into the database"}), 500
+        return jsonify({"status": "error", "message": "An error has occurred while creating the user"}), 500
