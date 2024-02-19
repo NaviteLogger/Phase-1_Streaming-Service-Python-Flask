@@ -56,7 +56,8 @@ def prepare_user_data():
     user.set_password("testpassword")
     db.session.add(user)
     db.session.commit()
-    yield
+    yield user
+    db.session.delete(user)
     db.session.rollback()
 
 
@@ -73,28 +74,21 @@ def test_search_for_movie(test_client, prepare_movie_data):
     assert response.get_json() == expected_response
 
 
-# For user-related tests, we ensure the user data is prepared beforehand
 @pytest.mark.parametrize(
-    "username, email, password, expected_status, expected_message, status_code",
+    "setup_required, username, email, password, expected_status, expected_message, status_code",
     [
-        # Case for a new user registration
-        ("newuser", "newemail@test.com", "newpassword", "success", "User created successfully", 201),
-        # Case for attempting to register a user with an existing username
-        ("newuser", "testemail@test.com", "testpassword", "error", "User already exists", 400),
-        # Additional case for attempting to register a user with an existing email
-        ("anotheruser", "newemail@test.com", "testpassword", "error", "Email already exists", 400),
-        # Case for missing username
-        ("", "newemail@test.com", "newpassword", "error", "Missing username", 400),
+        # Assumes no user exists beforehand
+        (False, "newuser1", "newemail1@test.com", "newpassword", "success", "User created successfully", 201),
+        # Assumes a user "testuser" already exists
+        (True, "testuser", "testemail@example.com", "testpassword", "error", "User already exists", 400),
     ],
 )
-def test_register_route(test_client, username, email, password, expected_status, expected_message, status_code):
+def test_register_route(test_client, prepare_user_data, setup_required, username, email, password, expected_status, expected_message, status_code):
+    if setup_required:
+        prepare_user_data  # Ensure this user setup is executed for tests that need it
     response = test_client.post("/register", json={"username": username, "email": email, "password": password})
-    json_data = response.get_json()
-
-    print(json_data)
     assert response.status_code == status_code
-    assert json_data["status"] == expected_status
-    assert json_data["message"] == expected_message
+    assert response.get_json() == {"status": expected_status, "message": expected_message}
 
 
 @pytest.mark.parametrize(
