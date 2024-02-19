@@ -41,7 +41,7 @@ def test_client():
 @pytest.fixture(scope="function")
 def prepare_database():
     # Setup that needs to be done before each test
-    test_movie = Movie(title="Edge of Tomorrow", year=2014, director="Doug Liman")
+    test_movie = Movie(title="Edge of Tomorrow", year=2014, director="Doug Liman", genre="Action")
     db.session.add(test_movie)
 
     yield  # This allows the test to run with the setup in place
@@ -54,7 +54,7 @@ def test_example_route(test_client):
     assert "Hello, world!" in response.data.decode("utf-8")
 
 
-def test_search_for_movie(test_client):
+def test_search_for_movie(test_client, prepare_database):
     response = test_client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
     assert response.status_code == 200
     expected_response = [{"id": 1, "title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman"}]
