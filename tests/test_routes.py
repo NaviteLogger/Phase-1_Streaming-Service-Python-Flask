@@ -20,6 +20,7 @@ def test_client():
         any database operations performed during the test will happen within this transaction
         """
         connection = db.engine.connect()
+        transaction = connection.begin()
 
         # Configure the session to use the connection
         session_factory = sessionmaker(bind=connection)
@@ -48,9 +49,18 @@ def prepare_movie_data():
     db.session.rollback()
 
 
+"""
+This fixture prepares a user before each test. It creates a new user with the username "testuser", email "testemail",
+and password "testpassword". The user is then added to the database and committed. After each individual test, the user 
+is deleted from the database and the session is rolled back to its initial state, so that the content / prerequisites of 
+the previous test do not interfere with the upcoming tests. This is important because the session is shared between tests,
+and we want to ensure that 'prepare_user_data' is executed before each test that requires it.
+"""
+
+
 @pytest.fixture(scope="function")
 def prepare_user_data():
-    # Assuming your User model has a method to set password
+    # Assuming the User model has a method to set password
     user = User(username="testuser", email="testemail")
     user.set_password("testpassword")
     db.session.add(user)
