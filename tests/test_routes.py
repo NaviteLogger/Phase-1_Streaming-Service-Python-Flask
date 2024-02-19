@@ -23,15 +23,14 @@ def test_client():
         # Configure the session to use the connection
         session_factory = sessionmaker(bind=connection)
         Session = scoped_session(session_factory)
-        db.session = Session()
+        db.session = Session
 
         """
         This opens a context that provides a test client. This client can be used to send requests
         to the Flask application without running a server.
         """
         with app.test_client() as testing_client:
-            with app.app_context():
-                yield testing_client
+            yield testing_client
 
         # Roll back the transaction (undoing all database operations) and close the connection
         Session.remove()
