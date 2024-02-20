@@ -15,7 +15,7 @@ function MovieBrowser() {
             // Fetch movie suggestions from the database using searchTerm
         }
         // setSuggestions(responseFromDatabase);
-    });
+    }, [searchTerm]);
 
     const handleSearch = async (e) => {
         e.preventDefault();
