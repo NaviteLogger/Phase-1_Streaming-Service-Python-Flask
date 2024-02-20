@@ -86,21 +86,23 @@ def test_example_route(test_client):
     "title, year, director, genre, status_code, movie_exists",
     [
         ("Edge of Tomorrow", 2014, "Doug Liman", "Action", 200, True),
-        ("", 0, "", "", 200, False),
+        ("", 0, "", "", 400, False),
     ],
 )
 def test_search_for_movie(test_client, prepare_movie_data, title, year, director, genre, status_code, movie_exists):
-    if not movie_exists:
+    if movie_exists:
         prepare_movie_data
     # Send a POST request to the test client
-    response = test_client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
+    response = test_client.post(f"/search-for-movie?query={title}")
     assert response.status_code == status_code
 
-    json_data = response.get_json()
-    assert json_data[0].get("title") == title
-    assert json_data[0].get("year") == year
-    assert json_data[0].get("director") == director
-    assert json_data[0].get("genre") == genre
+    # If the movie exists, check that the response contains the movie data
+    if movie_exists:
+        json_data = response.get_json()
+        assert json_data[0].get("title") == title
+        assert json_data[0].get("year") == year
+        assert json_data[0].get("director") == director
+        assert json_data[0].get("genre") == genre
 
 
 @pytest.mark.parametrize(
