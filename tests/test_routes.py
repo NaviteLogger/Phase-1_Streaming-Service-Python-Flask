@@ -85,7 +85,11 @@ def test_example_route(test_client):
     # Define the parameters for the test. Those parameters will be used to assert the expected results
     "title, year, director, genre, status_code, movie_exists",
     [
+        # Test case where the movie exists
         ("Edge of Tomorrow", 2014, "Doug Liman", "Action", 200, True),
+        # Test case where the movie does not exist
+        ("Non-existent Movie", 0, "", "", 404, False),
+        # Test case where the title is an empty string
         ("", 0, "", "", 400, False),
     ],
 )
