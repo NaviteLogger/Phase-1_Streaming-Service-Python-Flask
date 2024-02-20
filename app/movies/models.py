@@ -9,3 +9,7 @@ class Movie(db.Model):
     year = db.Column(db.Integer, nullable=False)
     director = db.Column(db.String(100), nullable=False)
     genre = db.Column(db.String(100), nullable=False)
+
+    def serialize(self):
+        """Serialize the Movie object to a dictionary."""
+        return {"id": self.id, "title": self.title, "year": self.year, "director": self.director, "genre": self.genre}

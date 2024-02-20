@@ -8,9 +8,16 @@ def search_for_movie():
     query = request.args.get("query", "")
 
     if not query:
-        return jsonify({"error": "Missing query"}), 400
+        return jsonify({"error": "Missing query parameter"}), 400
 
-    if query:
-        suggestions = Movie.query.filter(Movie.title.ilike(f"%{query}%")).limit(5).all()
-        return jsonify([{"id": movie.id, "title": movie.title, "year": movie.year, "director": movie.director, "genre": movie.genre} for movie in suggestions]), 200
-    return jsonify([]), 200
+    # Search for movies that match the query
+    movies = Movie.query.filter(Movie.title.ilike(f"%{query}%")).limit(5).all()
+
+    # Check whether any movies were found
+    if not movies:
+        return jsonify({"error": "No movies found"}), 404
+
+    # Serialize the movies to JSON
+    movies_json = jsonify([movie.serialize() for movie in movies])
+
+    return movies_json, 200

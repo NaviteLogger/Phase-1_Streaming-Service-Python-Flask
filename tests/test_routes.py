@@ -6,6 +6,8 @@ from werkzeug.security import generate_password_hash
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 
+# The base function for the test client is defined here. This function is used to create a test client for the Flask
+# application. The test client is used to send requests to the application without running a server.
 @pytest.fixture(scope="function")
 def test_client():
     """
@@ -43,9 +45,11 @@ def test_client():
 @pytest.fixture(scope="function")
 def prepare_movie_data():
     # Setup movie data before each test
-    db.session.add(Movie(title="Edge of Tomorrow", year=2014, director="Doug Liman", genre="Action"))
+    movie = Movie(title="Edge of Tomorrow", year=2014, director="Doug Liman", genre="Action")
+    db.session.add(movie)
     db.session.commit()
-    yield
+    yield movie
+    db.session.delete(movie)
     db.session.rollback()
 
 
@@ -65,6 +69,8 @@ def prepare_user_data():
     user.set_password("testpassword")
     db.session.add(user)
     db.session.commit()
+    # Yield is like a return statement, but it allows the function to continue executing after the yield statement
+    # This is useful for cleanup operations that need to be executed after the test
     yield user
     db.session.delete(user)
     db.session.rollback()
@@ -76,12 +82,17 @@ def test_example_route(test_client):
 
 
 @pytest.mark.parametrize(
-    "title, year, director, genre, status_code",
+    # Define the parameters for the test. Those parameters will be used to assert the expected results
+    "title, year, director, genre, status_code, movie_exists",
     [
-        ("Edge of Tomorrow", 2014, "Doug Liman", "Action", 200),
+        ("Edge of Tomorrow", 2014, "Doug Liman", "Action", 200, True),
+        ("", 0, "", "", 200, False),
     ],
 )
-def test_search_for_movie(test_client, prepare_movie_data, title, year, director, genre, status_code):
+def test_search_for_movie(test_client, prepare_movie_data, title, year, director, genre, status_code, movie_exists):
+    if not movie_exists:
+        prepare_movie_data
+    # Send a POST request to the test client
     response = test_client.post("/search-for-movie?query=Edge%20of%20Tomorrow")
     assert response.status_code == status_code
 
