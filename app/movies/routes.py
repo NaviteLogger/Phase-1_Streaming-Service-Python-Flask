@@ -52,3 +52,21 @@ def bookmark_movie(current_user):
         return jsonify({"status": "error", "message": f"An error occurred while bookmarking the movie: {e}"}), 500
 
     return jsonify({"status": "success", "message": f"{movie.title} has been added to your bookmarks"}), 200
+
+
+@movies_bp.route("/get-bookmarked-movies", methods=["GET"])
+@token_required
+def get_bookmarked_movies(current_user):
+    try:
+        # Query the database for the user's bookmarked movies
+        bookmarked_movies = current_user.bookmarked_movies
+    except Exception as e:
+        return jsonify({"status": "error", "message": f"An error occurred while fetching the database for the bookmarked movies: {e}"}), 500
+
+    if not bookmarked_movies:
+        return jsonify({"status": "error", "message": "No bookmarked movies found"}), 404
+
+    # Serialize the movies to JSON
+    bookmarked_movies_json = jsonify([movie.serialize() for movie in bookmarked_movies])
+
+    return bookmarked_movies_json, 200
