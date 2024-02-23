@@ -1,5 +1,20 @@
 # Local Streaming Service platform written in Python's web framework - Flask
 
+## Table of Contents
+
+- [Local Streaming Service platform written in Python's web framework - Flask](#local-streaming-service-platform-written-in-pythons-web-framework---flask)
+    - [Introduction](#introduction)
+    - [Features](#features)
+    - [Future Features](#future-features)
+    - [Installation](#installation)
+        - [Prerequisites](#prerequisites)
+        - [Setup Instructions (for Linux operating system)](#setup-instructions-for-linux-operating-system)
+    - [Usage](#usage)
+    - [Documentation](#documentation)
+    - [Contributing](#contributing)
+    - [Authors](#authors)
+    - [License](#license)
+
 ## Introduction
 
 This is a simple web streaming service platform written in Python's web framemork - Flask. The platform is designed to allow users to request, watch and bookmark movies and TV shows available on the platform's server. The project was created to serve as a local streaming service platform for a small community or organization. The platform is designed to be simple and easy to use, with a modern, responsive user interface.
