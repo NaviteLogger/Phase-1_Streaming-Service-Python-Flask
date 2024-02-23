@@ -1,2 +1,2 @@
 from app import db
-from . import main_bp
+from . import associations_bp
