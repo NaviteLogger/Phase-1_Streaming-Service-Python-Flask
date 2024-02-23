@@ -67,6 +67,6 @@ def get_bookmarked_movies(current_user):
         return jsonify({"status": "error", "message": "No bookmarked movies found"}), 404
 
     # Serialize the movies to JSON
-    bookmarked_movies_json = jsonify([movie.serialize() for movie in bookmarked_movies])
+    bookmarked_movies_json = jsonify([movie.serialize_without_id() for movie in bookmarked_movies])
 
     return bookmarked_movies_json, 200

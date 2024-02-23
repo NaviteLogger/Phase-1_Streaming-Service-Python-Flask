@@ -13,3 +13,7 @@ class Movie(db.Model):
     def serialize(self):
         """Serialize the Movie object to a dictionary."""
         return {"id": self.id, "title": self.title, "year": self.year, "director": self.director, "genre": self.genre}
+
+    def serialize_without_id(self):
+        """Serialize the Movie object to a dictionary, including a boolean indicating whether the movie is bookmarked."""
+        return {"title": self.title, "year": self.year, "director": self.director, "genre": self.genre, "bookmarked": False}
