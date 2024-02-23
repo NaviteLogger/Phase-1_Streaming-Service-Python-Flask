@@ -44,12 +44,13 @@ def create_app(test_config=None):
     # Import and register the database models
     from app.users.models import User
     from app.movies.models import Movie
-    from app.associations.models import association_table
+    from app.associations.models import bookmarks
 
     # Register blueprints within app context
     from app.main import main_bp
     from app.users import users_bp
     from app.movies import movies_bp
+    from app.associations import associations_bp
 
     # Register the main blueprint
     app.register_blueprint(main_bp)
