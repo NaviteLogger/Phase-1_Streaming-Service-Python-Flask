@@ -25,11 +25,11 @@ This project integrates a React frontend with a Flask backend to create a full-s
 
 - Modern React frontend
 - Flask backend with RESTful API
-- Responsive design suitable for all devices
+- User authentication and authorization
 
 ## Future Features
 
-- User authentication and authorization
+- Responsive design suitable for all devices
 - User's ability to upload and manage their own movies
 - P2P streaming
 
