@@ -159,11 +159,13 @@ def test_bookmark_movie(test_client, prepare_user_data, prepare_movie_data):
 
     # Login as the user
     response = test_client.post("/login", json={"username": "testuser", "password": "testpassword"})
-    print(response.get_json())
-    token = response.get_json()["token"]
+    assert response.status_code == 200
+    json_data = response.get_json()
+    assert "token" in json_data, "Token not present in response"
+    token = json_data["token"]
 
     # Bookmark the movie
-    response = test_client.post("/bookmark-movie", json={"title": "Edge of Tomorrow"}, headers={"Authorization": token})
+    response = test_client.post("/bookmark-movie", json={"title": "Edge of Tomorrow"}, headers={"Authorization": f"Bearer {token}"})
     assert response.status_code == 200
     assert response.get_json() == {"status": "success", "message": "Edge of Tomorrow has been added to your bookmarks"}
 

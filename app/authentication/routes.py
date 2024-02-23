@@ -12,7 +12,11 @@ def token_required(f):
 
         # Check if the request contains an authorization header
         if "Authorization" in request.headers:
-            token = request.headers["Authorization"].split(" ")[1]
+            parts = request.headers["Authorization"].split()
+            if len(parts) == 2 and parts[0] == "Bearer":
+                token = parts[1]
+            else:
+                return jsonify({"status": "error", "message": "Authorization header must be in the format 'Bearer <token>'"}), 401
 
         if not token:
             return jsonify({"error": "Missing authorization token"}), 403
