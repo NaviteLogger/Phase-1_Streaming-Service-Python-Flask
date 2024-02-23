@@ -25,6 +25,7 @@ def login():
     if user.check_password(password):
         # Generate a JWT token
         token = jwt.encode({"user_id": user.id, "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config["SECRET_KEY"], algorithm="HS256")
+        token = token.decode("utf-8") if isinstance(token, bytes) else token
 
         return jsonify({"status": "success", "message": "Login successful", "redirect": "/dashboard", "token": token}), 200
     else:

@@ -153,3 +153,21 @@ def test_login_route(test_client, prepare_user_data, username, password, expecte
     # For successful login, additionally check for the presence of the token
     if status_code == 200:
         assert "token" in json_data
+
+
+def test_bookmark_movie(test_client, prepare_user_data, prepare_movie_data):
+
+    # Login as the user
+    response = test_client.post("/login", json={"username": "testuser", "password": "testpassword"})
+    print(response.get_json())
+    token = response.get_json()["token"]
+
+    # Bookmark the movie
+    response = test_client.post("/bookmark-movie", json={"title": "Edge of Tomorrow"}, headers={"Authorization": token})
+    assert response.status_code == 200
+    assert response.get_json() == {"status": "success", "message": "Edge of Tomorrow has been added to your bookmarks"}
+
+    # Check that the movie is in the user's bookmarks
+    response = test_client.get("/bookmarks", headers={"Authorization": token})
+    assert response.status_code == 200
+    assert response.get_json() == [{"title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman", "genre": "Action"}]

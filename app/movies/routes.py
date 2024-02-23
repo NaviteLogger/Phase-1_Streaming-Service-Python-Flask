@@ -44,7 +44,7 @@ def bookmark_movie(current_user):
     if not movie:
         return jsonify({"status": "error", "message": "The requested movie was not found in the database (this probably indicates a frontend bug)"}), 404
 
-    try
+    try:
         # Add the movie to the user's bookmarks
         current_user.bookmarked_movies.append(movie)
         db.session.commit()
