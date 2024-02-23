@@ -28,4 +28,6 @@ def bookmark_movie():
     data = request.get_json()
 
     if not data:
-        return jsonify("status": "error", "message": "Missing JSON body"}), 400
+        return jsonify({"status": "error", "message": "Missing JSON body"}), 400
+    
+    
