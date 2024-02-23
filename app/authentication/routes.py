@@ -7,7 +7,7 @@ from app.users.models import User
 # This function should be applied to routes that require authentication
 def token_required(f):
     @wraps(f)
-    def decorated(*args, **kwargs):
+    def decorated_function(*args, **kwargs):
         token = None
 
         # Check if the request contains an authorization header
@@ -26,4 +26,4 @@ def token_required(f):
 
         return f(current_user, *args, **kwargs)
 
-    return decorated
+    return decorated_function

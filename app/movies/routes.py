@@ -1,6 +1,7 @@
 from flask import request, jsonify, current_app as app
 from . import movies_bp
 from .models import Movie, db
+from app.authentication.routes import token_required
 
 
 @movies_bp.route("/search-for-movie", methods=["POST"])
@@ -24,12 +25,17 @@ def search_for_movie():
 
 
 @movies_bp.route("/bookmark-movie", methods=["POST"])
+@token_required
 def bookmark_movie():
     data = request.get_json()
-    movie_title = data.get("title")
-    
 
     if not data:
         return jsonify({"status": "error", "message": "Missing JSON body"}), 400
-    
-    
+
+    movie_title = data.get("title")
+
+    # Query the database for the movie id based on the title
+    movie = Movie.query.filter_by(title=movie_title).first()
+
+    if not movie:
+        return jsonify({"status": "error", "message": "The requested movie was not found in the database (this probably indicates a frontend bug)"}), 404
