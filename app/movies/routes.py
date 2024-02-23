@@ -27,7 +27,7 @@ def search_for_movie():
 
 @movies_bp.route("/bookmark-movie", methods=["POST"])
 @token_required
-def bookmark_movie():
+def bookmark_movie(current_user):
     data = request.get_json()
 
     if not data:
@@ -35,14 +35,20 @@ def bookmark_movie():
 
     movie_title = data.get("title")
 
+    if not movie_title:
+        return jsonify({"status": "error", "message": "Missing title parameter"}), 400
+
     # Query the database for the movie id based on the title
     movie = Movie.query.filter_by(title=movie_title).first()
 
     if not movie:
         return jsonify({"status": "error", "message": "The requested movie was not found in the database (this probably indicates a frontend bug)"}), 404
 
-    # Add the movie to the user's bookmarks
-    current_user = app.current_user
-    db.session.commit()
+    try
+        # Add the movie to the user's bookmarks
+        current_user.bookmarked_movies.append(movie)
+        db.session.commit()
+    except Exception as e:
+        return jsonify({"status": "error", "message": f"An error occurred while bookmarking the movie: {e}"}), 500
 
     return jsonify({"status": "success", "message": f"{movie.title} has been added to your bookmarks"}), 200
