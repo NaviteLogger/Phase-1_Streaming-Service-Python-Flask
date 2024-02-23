@@ -26,6 +26,8 @@ def search_for_movie():
 @movies_bp.route("/bookmark-movie", methods=["POST"])
 def bookmark_movie():
     data = request.get_json()
+    movie_title = data.get("title")
+    
 
     if not data:
         return jsonify({"status": "error", "message": "Missing JSON body"}), 400

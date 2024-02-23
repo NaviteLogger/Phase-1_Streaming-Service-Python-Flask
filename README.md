@@ -76,6 +76,12 @@ cd my-app
 npm install
 ```
 
+4. Set the environment variables: fill in the .env file with your own values
+
+```bash
+cp .env.example .env
+```
+
 ### Usage
 
 4. Run the backend server
