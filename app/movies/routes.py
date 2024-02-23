@@ -1,6 +1,7 @@
 from flask import request, jsonify, current_app as app
 from . import movies_bp
 from .models import Movie, db
+from app.associations.models import bookmarks
 from app.authentication.routes import token_required
 
 
@@ -39,3 +40,9 @@ def bookmark_movie():
 
     if not movie:
         return jsonify({"status": "error", "message": "The requested movie was not found in the database (this probably indicates a frontend bug)"}), 404
+
+    # Add the movie to the user's bookmarks
+    current_user = app.current_user
+    db.session.commit()
+
+    return jsonify({"status": "success", "message": f"{movie.title} has been added to your bookmarks"}), 200
