@@ -52,9 +52,10 @@ def create_app(test_config=None):
     from app.movies import movies_bp
     from app.associations import associations_bp
 
-    # Register the main blueprint
+    # Register the blueprints
     app.register_blueprint(main_bp)
     app.register_blueprint(users_bp)
     app.register_blueprint(movies_bp)
+    app.register_blueprint(associations_bp)
 
     return app
