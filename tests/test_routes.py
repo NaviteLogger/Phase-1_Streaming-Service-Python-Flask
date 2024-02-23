@@ -170,6 +170,6 @@ def test_bookmark_movie(test_client, prepare_user_data, prepare_movie_data):
     assert response.get_json() == {"status": "success", "message": "Edge of Tomorrow has been added to your bookmarks"}
 
     # Check that the movie is in the user's bookmarks
-    response = test_client.get("/bookmarks", headers={"Authorization": token})
+    response = test_client.get("/get-bookmarked-movies", headers={"Authorization": f"Bearer {token}"})
     assert response.status_code == 200
     assert response.get_json() == [{"title": "Edge of Tomorrow", "year": 2014, "director": "Doug Liman", "genre": "Action"}]
