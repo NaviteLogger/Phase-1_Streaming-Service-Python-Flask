@@ -13,6 +13,8 @@ def token_required(f):
         # Check if the request contains an authorization header
         if "Authorization" in request.headers:
             parts = request.headers["Authorization"].split()
+            # To check whether the request contains a separate authorization section,
+            # check the length of the parts list and whether the first part is "Bearer"
             if len(parts) == 2 and parts[0] == "Bearer":
                 token = parts[1]
             else:
@@ -26,7 +28,7 @@ def token_required(f):
             data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
             current_user = User.query.filter_by(id=data["user_id"]).first()
         except:
-            return jsonify({"error": "Invalid token"}), 401
+            return jsonify({"error": "Invalid authorization token"}), 401
 
         return f(current_user, *args, **kwargs)
 

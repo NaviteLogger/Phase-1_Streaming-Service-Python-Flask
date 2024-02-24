@@ -127,7 +127,7 @@ def test_register_route(test_client, prepare_user_data, setup_required, username
 
 
 @pytest.mark.parametrize(
-    "username, password, expected_status, expected_message, status_code, user_exists",
+    "username, password, expected_status, expected_message, status_code, user_must_exists",
     [
         # Test case where user exists and password is correct
         ("testuser", "testpassword", "success", "Login successful", 200, True),
@@ -137,8 +137,8 @@ def test_register_route(test_client, prepare_user_data, setup_required, username
         ("non-existentuser", "non-existentpassword", "error", "User not found", 404, False),
     ],
 )
-def test_login_route(test_client, prepare_user_data, username, password, expected_status, expected_message, status_code, user_exists):
-    if user_exists:
+def test_login_route(test_client, prepare_user_data, username, password, expected_status, expected_message, status_code, user_must_exists):
+    if user_must_exists:
         # Ensure the user is prepared for tests that require an existing user.
         prepare_user_data
 
