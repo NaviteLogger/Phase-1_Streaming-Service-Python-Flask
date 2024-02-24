@@ -65,7 +65,7 @@ and we want to ensure that 'prepare_user_data' is executed before each test that
 @pytest.fixture(scope="function")
 def prepare_user_data():
     # Assuming the User model has a method to set password
-    user = User(username="testuser", email="testemail")
+    user = User(username="testuser", email="testemail@example.com")
     user.set_password("testpassword")
     db.session.add(user)
     db.session.commit()
@@ -116,6 +116,8 @@ def test_search_for_movie(test_client, prepare_movie_data, title, year, director
         (False, "newuser1", "newemail1@test.com", "newpassword", "success", "User created successfully", 201),
         # Assumes a user "testuser" already exists
         (True, "testuser", "testemail@example.com", "testpassword", "error", "User already exists", 400),
+        # Assumes a user with email "testemail" already exists
+        (True, "newuser2", "testemail@example.com", "newpassword", "error", "Email already exists", 400),
         # Test case where the username is missing
         (False, "", "secondtestemail@example.com", "testpassword", "error", "Missing username", 400),
         # Test case where the email is missing
