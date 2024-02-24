@@ -70,3 +70,20 @@ def get_bookmarked_movies(current_user):
     bookmarked_movies_json = jsonify([movie.serialize_without_id() for movie in bookmarked_movies])
 
     return bookmarked_movies_json, 200
+
+
+@movies_bp.route("video/<movie-title>", methods=["GET"])
+def stream_video(movie_title):
+    query = request.args.get("query", "")
+
+    if not query:
+        return jsonify({"status": "error", "message": "Missing query parameter (movie title)"}), 400
+
+    # Query the database for the movie id based on the title
+    try:
+        movie = Movie.query.filter_by(title=movie_title).first()
+    except Exception as e:
+        return jsonify({"status": "error", "message": f"An error occurred while fetching the database for the movie idi: {e}"}), 500
+
+    if not movie:
+        return jsonify({"status": "error", "message": "No movie id was not found for the given title (this probably indicates a frontend bug)"}), 404
