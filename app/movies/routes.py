@@ -3,6 +3,7 @@ from . import movies_bp
 from .models import Movie, db
 from app.associations.models import bookmarks
 from app.authentication.routes import token_required
+import os
 
 
 @movies_bp.route("/search-for-movie", methods=["POST"])
@@ -81,9 +82,12 @@ def stream_video(movie_title):
 
     # Query the database for the movie id based on the title
     try:
-        movie = Movie.query.filter_by(title=movie_title).first()
+        movie_id = Movie.query.filter_by(title=movie_title).first()
     except Exception as e:
         return jsonify({"status": "error", "message": f"An error occurred while fetching the database for the movie idi: {e}"}), 500
 
-    if not movie:
+    if not movie_id:
         return jsonify({"status": "error", "message": "No movie id was not found for the given title (this probably indicates a frontend bug)"}), 404
+
+    # Get the movie's video file path from movie_id
+    path = os.path.join(app.config["UPLOAD_FOLDER"], f"{movie_id}.mp4")

@@ -1,0 +1,1 @@
+In this folder place any movie file you want. The file's name should be corresponding to its database id in the 'movie' table.

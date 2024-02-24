@@ -19,6 +19,8 @@ class Config:
     SQLALCHEMY_DATABASE_URI = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:3306/{MYSQL_DB}"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    UPLOAD_FOLDER = "./app/static/uploads"
+
 
 class DevelopmentConfig(Config):
     """Development configuration"""
