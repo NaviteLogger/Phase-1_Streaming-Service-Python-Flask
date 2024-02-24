@@ -116,6 +116,12 @@ def test_search_for_movie(test_client, prepare_movie_data, title, year, director
         (False, "newuser1", "newemail1@test.com", "newpassword", "success", "User created successfully", 201),
         # Assumes a user "testuser" already exists
         (True, "testuser", "testemail@example.com", "testpassword", "error", "User already exists", 400),
+        # Test case where the username is missing
+        (False, "", "secondtestemail@example.com", "testpassword", "error", "Missing username", 400),
+        # Test case where the email is missing
+        (False, "secondtestuser", "", "secondtestpassword", "error", "Missing email", 400),
+        # Test case where the password is missing
+        (False, "secondtestuser", "secondtestemail@example.com", "", "error", "Missing password", 400),
     ],
 )
 def test_register_route(test_client, prepare_user_data, setup_required, username, email, password, expected_status, expected_message, status_code):
