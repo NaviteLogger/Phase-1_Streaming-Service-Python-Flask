@@ -1,4 +1,4 @@
-from flask import request, jsonify, current_app as app
+from flask import request, jsonify, current_app as app, send_file
 from . import movies_bp
 from .models import Movie, db
 from app.associations.models import bookmarks
@@ -95,3 +95,8 @@ def stream_video(movie_title):
     # Check whether the file exists
     if not path:
         return jsonify({"status": "error", "message": "The requested movie's path was not found in the database"}), 500
+
+    # Check whether the request is for the whole video file
+    range_header = request.headers.get("Range", none)
+    if not range_header:
+        return send_file(path)
