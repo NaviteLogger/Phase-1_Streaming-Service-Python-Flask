@@ -106,6 +106,7 @@ http://localhost:3000
 ## Documentation
 
 The documentation for this project can be found in the [docs](docs) directory.
+The built documentation can be found in the [build/docs](build/docs) directory.
 
 ## Contributing
 
