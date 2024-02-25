@@ -87,7 +87,11 @@ def stream_video(movie_title):
         return jsonify({"status": "error", "message": f"An error occurred while fetching the database for the movie idi: {e}"}), 500
 
     if not movie_id:
-        return jsonify({"status": "error", "message": "No movie id was not found for the given title (this probably indicates a frontend bug)"}), 404
+        return jsonify({"status": "error", "message": "No movie id was not found for the given titl)"}), 500
 
     # Get the movie's video file path from movie_id
     path = os.path.join(app.config["UPLOAD_FOLDER"], f"{movie_id}.mp4")
+
+    # Check whether the file exists
+    if not path:
+        return jsonify({"status": "error", "message": "The requested movie's path was not found in the database"}), 500
